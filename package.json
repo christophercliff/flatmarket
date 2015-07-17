@@ -1,0 +1,26 @@
+{
+  "name": "flatmarket-schema",
+  "description": "A JSON schema utility for flatmarket.",
+  "version": "0.0.0",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/christophercliff/flatmarket-schema"
+  },
+  "main": "./lib/",
+  "scripts": {
+    "style": "./node_modules/crispy/node_modules/.bin/eslint -c ./node_modules/crispy/.eslintrc ./lib/ ./test/",
+    "test": "npm run style && ./node_modules/.bin/mocha --reporter spec --grep ''"
+  },
+  "dependencies": {
+    "joi": "^6.5.0"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "crispy": "^4.0.0",
+    "mocha": "^2.2.5"
+  }
+}
