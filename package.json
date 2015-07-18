@@ -1,0 +1,61 @@
+{
+  "name": "flatmarket",
+  "description": "A free and secure e-commerce platform for static websites.",
+  "version": "0.0.0",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/christophercliff/flatmarket"
+  },
+  "main": "./lib/index.js",
+  "bin": {
+    "flatmarket": "./bin/flatmarket"
+  },
+  "scripts": {
+    "style": "./node_modules/crispy/node_modules/.bin/eslint -c ./node_modules/crispy/.eslintrc ./lib/ ./test/",
+    "test": "npm run style && ./node_modules/.bin/karma start ./karma.config.js"
+  },
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "commander": "^2.8.1",
+    "expose-loader": "^0.7.0",
+    "flatmarket-client": "0.0.0",
+    "flatmarket-schema": "0.0.0",
+    "flatmarket-server": "0.0.0",
+    "fs-extra": "^0.22.1",
+    "hapi": "^8.8.0",
+    "immutable": "^3.7.4",
+    "joi": "^6.6.0",
+    "json-loader": "^0.5.2",
+    "jsx-loader": "^0.13.2",
+    "lodash": "^3.10.0",
+    "node-libs-browser": "^0.5.2",
+    "react": "^0.13.3",
+    "react-style": "^0.5.5",
+    "redux": "^1.0.0-rc",
+    "redux-thunk": "^0.1.0",
+    "watchpack": "^0.2.8",
+    "webpack": "^1.10.1",
+    "webpack-dev-server": "^1.10.1"
+  },
+  "devDependencies": {
+    "chai": "^3.1.0",
+    "crispy": "^4.0.0",
+    "faux-jax": "^4.0.0",
+    "istanbul": "^0.3.13",
+    "istanbul-instrumenter-loader": "^0.1.2",
+    "karma": "^0.12.31",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-coverage": "^0.3.1",
+    "karma-mocha": "^0.1.10",
+    "karma-sinon": "^1.0.4",
+    "karma-sourcemap-loader": "^0.3.4",
+    "karma-webpack": "^1.5.0",
+    "mocha": "^2.2.5",
+    "sinon": "^1.15.4"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "products": {
+    "001": {
+      "amount": 123
+    }
+  },
+  "server": {
+    "host": "foo.com"
+  },
+  "stripe": {
+    "publishableKey": "just_a_fake_key"
+  }
+}
