@@ -1,0 +1,43 @@
+{
+  "name": "flatmarket-client",
+  "description": "A browser client for flatmarket.",
+  "version": "0.0.0",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/christophercliff/flatmarket-client"
+  },
+  "main": "./lib/",
+  "scripts": {
+    "style": "./node_modules/crispy/node_modules/.bin/eslint -c ./node_modules/crispy/.eslintrc ./lib/ ./test/",
+    "test": "npm run style && ./node_modules/karma/bin/karma start karma.config.js"
+  },
+  "dependencies": {
+    "bluebird": "^2.9.30",
+    "boom": "^2.8.0",
+    "hapi-flatmarket": "0.0.0",
+    "joi": "^6.6.0",
+    "lodash": "^3.10.0",
+    "reqwest": "^1.1.5"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "crispy": "^4.0.0",
+    "istanbul-instrumenter-loader": "^0.1.3",
+    "karma": "^0.12.37",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-coverage": "^0.4.2",
+    "karma-mocha": "^0.2.0",
+    "karma-sinon": "^1.0.4",
+    "karma-sourcemap-loader": "^0.3.5",
+    "karma-webpack": "^1.5.1",
+    "mocha": "^2.2.5",
+    "node-libs-browser": "^0.5.2",
+    "sinon": "^1.15.4",
+    "webpack": "^1.10.0"
+  }
+}
