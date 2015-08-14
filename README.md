@@ -1,10 +1,13 @@
-[![Build Status](https://travis-ci.org/christophercliff/flatmarket-schema.png?branch=master)](https://travis-ci.org/christophercliff/flatmarket-schema)
+Made possible By [JSON Expert](https://json.expert/), the easiest way to create a web-ready API.
+
+---
 
 # flatmarket-schema
 
-> ***[flatmarket](https://github.com/christophercliff/flatmarket)*** is a free and secure e-commerce platform for static websites.<br />By [JSON Expert](https://json.expert/).
+[![Build Status](https://circleci.com/gh/christophercliff/flatmarket-schema.svg?style=shield)](https://circleci.com/gh/christophercliff/flatmarket-schema)
+[![codecov.io](http://codecov.io/github/christophercliff/flatmarket-schema/coverage.svg?branch=master)](http://codecov.io/github/christophercliff/flatmarket-schema?branch=master)
 
-A JSON schema utility for flatmarket.
+A JSON schema utility for [flatmarket](https://json.expert/flatmarket/).
 
 ## Installation
 

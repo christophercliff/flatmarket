@@ -12,6 +12,7 @@
   },
   "main": "./lib/",
   "scripts": {
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
     "style": "./node_modules/crispy/node_modules/.bin/eslint -c ./node_modules/crispy/.eslintrc ./lib/ ./test/",
     "test": "npm run style && ./node_modules/.bin/mocha --reporter spec --grep ''"
   },
@@ -20,7 +21,9 @@
   },
   "devDependencies": {
     "chai": "^3.0.0",
+    "codecov.io": "^0.1.5",
     "crispy": "^4.0.0",
+    "istanbul": "^0.3.17",
     "mocha": "^2.2.5"
   }
 }

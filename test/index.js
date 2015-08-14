@@ -1,31 +1,87 @@
+var expect = require('chai').expect
 var Joi = require('joi')
 var schema = require('../')
 
 describe('schema', function () {
 
-    describe('isValid()', function () {
+    it('should validate required', function () {
+        Joi.assert({
+            info: {
+                name: 'test',
+            },
+            products: {
+                product_1: {
+                    amount: 1,
+                },
+            },
+            server: {
+                host: 'mysite.com',
+            },
+            stripe: {
+                publishableKey: 'just_a_fake_key',
+            },
+        }, schema)
+    })
 
-        it('should validate', function () {
-            Joi.assert({
-                products: {
-                    p1: {
-                        amount: 123,
-                        description: 'Just a product',
-                        metadata: {
-                            foo: 'Just some metadata',
-                        },
-                        'x-foo': 'Just a custom field',
-                    },
+    it('should validate product-level Stripe overrides', function () {
+        Joi.assert({
+            info: {
+                name: 'test',
+            },
+            products: {
+                product_1: {
+                    amount: 1,
+                    billingAddress: true,
                 },
-                server: {
-                    host: 'mysite.com',
-                },
-                stripe: {
-                    publishableKey: 'just_a_fake_key',
-                },
-            }, schema)
-        })
+            },
+            server: {
+                host: 'mysite.com',
+            },
+            stripe: {
+                publishableKey: 'just_a_fake_key',
+            },
+        }, schema)
+    })
 
+    it('should validate custom fields', function () {
+        Joi.assert({
+            info: {
+                name: 'Just a Test Store',
+                description: 'Just a description.',
+                'x-whatever': { hello: 'World!' },
+            },
+            products: {
+                product_1: {
+                    amount: 1,
+                    'x-whatever': { hello: 'World!' },
+                },
+            },
+            server: {
+                host: 'mysite.com',
+            },
+            stripe: {
+                publishableKey: 'just_a_fake_key',
+            },
+        }, schema)
+    })
+
+    it('should expose isValid', function () {
+        expect(schema.isValid({
+            info: {
+                name: 'test',
+            },
+            products: {
+                product_1: {
+                    amount: 1,
+                },
+            },
+            server: {
+                host: 'mysite.com',
+            },
+            stripe: {
+                publishableKey: 'just_a_fake_key',
+            },
+        })).to.be.true
     })
 
 })
