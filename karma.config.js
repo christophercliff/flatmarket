@@ -12,7 +12,16 @@ module.exports = function (config) {
         },
         colors: true,
         coverageReporter: {
-            type: 'text',
+            reporters: [
+                {
+                    type: 'text',
+                },
+                {
+                    dir: './coverage/',
+                    subdir: './',
+                    type: 'json',
+                },
+            ],
         },
         files: [
           './test/entry.js',

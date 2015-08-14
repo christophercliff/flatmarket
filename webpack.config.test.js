@@ -3,7 +3,7 @@ var webpack = require('webpack')
 
 module.exports = {
     context: path.resolve(__dirname, './lib/entries/'),
-    devtool: 'inline-source-map',
+    devtool: 'eval',
     module: {
         loaders: [
             {

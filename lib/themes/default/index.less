@@ -1,0 +1,120 @@
+@font-face {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: url('./work-sans-300.woff') format('woff');
+}
+
+@ABSOLUTE_FONT_SIZE_SMALL: 24px;
+@COLOR_PRIMARY: #fff;
+@COLOR_SECONDARY: #222;
+@COLOR_TERTIARY: #000;
+@FONT_FAMILY_PRIMARY: 'Work Sans', sans-serif;
+@MAX_WIDTH: 1500px;
+
+.flush() {
+    margin: 0;
+    padding: 0;
+}
+.typePrimary() {
+    font-size: 1.00rem;
+    font-weight: 300;
+    line-height: 1.33rem;
+}
+
+html {
+    background: @COLOR_SECONDARY;
+    color: @COLOR_PRIMARY;
+    font-family: @FONT_FAMILY_PRIMARY;
+    font-size: @ABSOLUTE_FONT_SIZE_SMALL;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: @MAX_WIDTH;
+}
+
+header,
+footer {
+    padding: 1.25em 1.00em;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    section {
+        background: @COLOR_TERTIARY;
+        flex: 1 1 50%;
+        position: relative;
+        img {
+            display: block;
+            height: @MAX_WIDTH/2;
+            width: @MAX_WIDTH/2;
+        }
+        a {
+            .typePrimary();
+            background-image: none;
+            display: block;
+            height: 100%;
+            left: 0;
+            padding: 1.00em;
+            position: absolute;
+            text-decoration: none;
+            top: 0;
+            width: 100%;
+            &:hover {
+                .cta {
+                    background-image: linear-gradient(to bottom, transparent 94%, #fff 96%, #fff 100%);
+                }
+            }
+            &.disabled {
+                cursor: default;
+                .cta {
+                    background-image: none;
+                    opacity: 0.25;
+                }
+            }
+            &.charging {
+                .cta {
+                    background-image: none;
+                }
+            }
+            .cta {
+
+                display: inline-block;
+            }
+        }
+        button {
+            background: none;
+            border: none;
+            color: @COLOR_PRIMARY;
+            display: block;
+            font-family: @FONT_FAMILY_PRIMARY;
+            font-size: @ABSOLUTE_FONT_SIZE_SMALL;
+            margin: 1.00em 0;
+            padding: 0;
+        }
+    }
+}
+
+h1,
+p {
+    margin: 1.00rem 0;
+    .typePrimary();
+}
+
+a {
+    background-image: linear-gradient(to bottom, transparent 94%, #fff 96%, #fff 100%);
+    color: @COLOR_PRIMARY;
+    text-decoration: none;
+}
+
+aside {
+    background: rgba(0, 0, 0, 0.90);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+}

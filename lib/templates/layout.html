@@ -3,14 +3,12 @@
     <head>
         <meta charset="utf-8" />
         <title><%= title %></title>
-        <% if (cssPath) { %>
-            <link href="<%= cssPath %>" rel="stylesheet" type="text/css" />
-        <% } %>
+        <% if (cssPath) { %><link href="<%= cssPath %>" rel="stylesheet" type="text/css" /><% } %>
     </head>
     <body style="margin:0;padding:0;">
         <div id="root"><%= markup %></div>
         <script src="https://checkout.stripe.com/checkout.js"></script>
         <script src="<%= jsPath %>"></script>
-        <script>(typeof app === 'object' && typeof app.init === 'function') && app.init(<%= data %>)</script>
+        <script>app.init(<%= data %>)</script>
     </body>
 </html>
