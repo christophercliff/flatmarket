@@ -1,7 +1,7 @@
 {
   "name": "flatmarket-schema",
   "description": "A JSON schema utility for flatmarket.",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "engines": {
     "node": "0.10.x"
   },
