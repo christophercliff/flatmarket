@@ -1,6 +1,6 @@
 {
   "name": "flatmarket-client",
-  "description": "A browser client for flatmarket.",
+  "description": "A browser client for Flatmarket.",
   "version": "0.0.0",
   "engines": {
     "node": "0.10.x"
@@ -18,13 +18,15 @@
   "dependencies": {
     "bluebird": "^2.9.30",
     "boom": "^2.8.0",
-    "hapi-flatmarket": "0.0.0",
+    "hapi-flatmarket": "^1.0.0",
     "joi": "^6.6.0",
     "lodash": "^3.10.0",
-    "reqwest": "^1.1.5"
+    "reqwest": "^2.0.1",
+    "xhr2": "^0.1.3"
   },
   "devDependencies": {
     "chai": "^3.0.0",
+    "codecov.io": "^0.1.5",
     "crispy": "^4.0.0",
     "istanbul-instrumenter-loader": "^0.1.3",
     "karma": "^0.12.37",
