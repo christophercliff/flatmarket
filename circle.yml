@@ -1,0 +1,3 @@
+test:
+  post:
+    - cat ./coverage/coverage-final.json | ./node_modules/.bin/codecov
