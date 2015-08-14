@@ -1,0 +1,3 @@
+test:
+  post:
+    - npm run coverage && cat ./coverage/coverage.json | ./node_modules/.bin/codecov
