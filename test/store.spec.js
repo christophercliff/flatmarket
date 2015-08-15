@@ -1,7 +1,8 @@
 /* global sinon */
 var actions = require('../lib/actions')
+var createStore = require('../lib/create-store')
 var expect = require('chai').expect
-var store = require('../lib/store')
+var reducer = require('../lib/reducer')
 var url = require('url')
 
 var SERVER_PROTOCOL = 'https'
@@ -18,10 +19,12 @@ var URI = url.format({
 describe('store', function () {
 
     var fakeServer
+    var store
 
     this.timeout(10e3)
 
     beforeEach(function () {
+        store = createStore(reducer)
         fakeServer = sinon.fakeServer.create()
         fakeServer.autoRespond = true
         fakeServer.autoRespondAfter = 100
@@ -123,12 +126,12 @@ describe('store', function () {
             }),
         ])
         store.dispatch(actions.reset(SCHEMA))
-        expect(store.getState().get('statusOfServer')).to.equal(undefined)
+        expect(store.getState().get('status')).to.equal(undefined)
         var promise = actions.updateStatus()(store.dispatch, store.getState)
-        expect(store.getState().get('statusOfServer')).to.equal('begin')
+        expect(store.getState().get('status')).to.equal('begin')
         promise
             .then(function () {
-                expect(store.getState().get('statusOfServer')).to.equal('failure')
+                expect(store.getState().get('status')).to.equal('failure')
                 return done()
             })
             .caught(done)
@@ -143,12 +146,12 @@ describe('store', function () {
             }),
         ])
         store.dispatch(actions.reset(SCHEMA))
-        expect(store.getState().get('statusOfServer')).to.equal(undefined)
+        expect(store.getState().get('status')).to.equal(undefined)
         var promise = actions.updateStatus()(store.dispatch, store.getState)
-        expect(store.getState().get('statusOfServer')).to.equal('begin')
+        expect(store.getState().get('status')).to.equal('begin')
         promise
             .then(function () {
-                expect(store.getState().get('statusOfServer')).to.equal('success')
+                expect(store.getState().get('status')).to.equal('success')
                 return done()
             })
             .caught(done)

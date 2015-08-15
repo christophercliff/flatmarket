@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>test</title>
+        <link href="/app.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body style="margin:0;padding:0;">
+        <div id="root"><div class="container"><header><h1>test</h1></header><main><section><a class="" href="#"><div> / </div><div class="cta">Buy now $1.23</div></a></section></main><footer><p>This website created by <a href="https://json.expert/flatmarket/">Flatmarket</a>.</p></footer></div></div>
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <script src="/app.js"></script>
+        <script>app.init({"info":{"name":"test"},"products":{"001":{"amount":123}},"server":{"host":"foo.com"},"stripe":{"publishableKey":"just_a_fake_key"}})</script>
+    </body>
+</html>
