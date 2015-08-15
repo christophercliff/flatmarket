@@ -4,7 +4,7 @@ Made possible By [JSON Expert](https://json.expert/), the easiest way to create 
 
 # flatmarket
 
-[![Build Status](https://travis-ci.org/christophercliff/flatmarket.png?branch=master)](https://travis-ci.org/christophercliff/flatmarket)
+[![Build Status](https://circleci.com/gh/christophercliff/flatmarket.svg?style=shield)](https://circleci.com/gh/christophercliff/flatmarket)
 [![codecov.io](http://codecov.io/github/christophercliff/flatmarket/coverage.svg?branch=master)](http://codecov.io/github/christophercliff/flatmarket?branch=master)
 
 Flatmarket is a free, open source e-commerce platform for static websites. It's simple architecture makes it extremely reliable, secure, and inexpensive to operate.
