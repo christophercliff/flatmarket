@@ -1,7 +1,7 @@
 {
   "name": "flatmarket",
   "description": "A free, open source e-commerce platform for static websites.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "node": "0.10.x"
   },
