@@ -11,7 +11,7 @@ Flatmarket is a free, open source e-commerce platform for static websites. It's 
 
 The platform uses [Stripe](https://stripe.com/) for payment processing and is built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/).
 
-At its core is a batteries-included CLI to help you get started quickly. Individual components are also packaged individually so you can easily customize your rig.
+At its core is a batteries-included CLI to help you get started quickly. Modules are also packaged individually so you can easily customize your rig.
 
 ## Example
 
@@ -39,7 +39,7 @@ Flatmarket isn't appropriate for every e-commerce project, but it is uniquely su
 
 ## Get started
 
-#### 1. Create a [schema](https://github.com/christophercliff/flatmarket-schema) document
+##### 1. Create a [schema](https://github.com/christophercliff/flatmarket-schema) document
 
 ```json
 {
@@ -60,21 +60,17 @@ Flatmarket isn't appropriate for every e-commerce project, but it is uniquely su
 }
 ```
 
-#### 2. Install the CLI
+##### 2. Install the CLI
 
 ```sh
 npm install -g flatmarket
 ```
 
-#### 3. Start a local Flatmarket server at [https://127.0.0.1:8000/](https://127.0.0.1:8000/)
+##### 3. Start a local Flatmarket server at [https://127.0.0.1:8000/](https://127.0.0.1:8000/)
 
 ```sh
 $ flatmarket build ./your-schema.json --stripe-secret-key your_stripe_secret_key
 ```
-
-## Customization
-
-TODO
 
 ## Platform
 
@@ -84,6 +80,14 @@ TODO
 - [flatmarket-server](https://github.com/christophercliff/flatmarket-server) A standalone web server for Flatmarket.
 - [flatmarket-server-heroku](https://github.com/christophercliff/flatmarket-server-heroku) A Flatmarket server for [Heroku](https://www.heroku.com/).
 - [hapi-flatmarket](https://github.com/christophercliff/hapi-flatmarket) A hapi plugin for creating Flatmarket servers.
+
+## Reference
+
+See [REFERENCE](https://github.com/christophercliff/flatmarket/blob/master/REFERENCE.md).
+
+## Customization
+
+See [CUSTOMIZATION](https://github.com/christophercliff/flatmarket/blob/master/CUSTOMIZATION.md).
 
 ## Contributing
 
