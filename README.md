@@ -69,7 +69,7 @@ npm install -g flatmarket
 ##### 3. Start a local Flatmarket server at [https://127.0.0.1:8000/](https://127.0.0.1:8000/)
 
 ```sh
-$ flatmarket build ./your-schema.json --stripe-secret-key your_stripe_secret_key
+$ flatmarket build ./your-schema.json --preview --stripe-secret-key your_stripe_secret_key
 ```
 
 ## Platform
