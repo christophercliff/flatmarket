@@ -7,7 +7,7 @@ Made possible By [JSON Expert](https://json.expert/), the easiest way to create 
 [![Build Status](https://circleci.com/gh/christophercliff/flatmarket-schema.svg?style=shield)](https://circleci.com/gh/christophercliff/flatmarket-schema)
 [![codecov.io](http://codecov.io/github/christophercliff/flatmarket-schema/coverage.svg?branch=master)](http://codecov.io/github/christophercliff/flatmarket-schema?branch=master)
 
-A JSON schema utility for [flatmarket](https://json.expert/flatmarket/).
+A JSON schema utility for [Flatmarket](https://json.expert/flatmarket/).
 
 ## Installation
 
@@ -27,7 +27,7 @@ validation.error // the error (`null` if `yourObj` is valid)
 
 ## Specification
 
-See [SPECIFICATION](https://github.com/christophercliff/flatmarket-schema/blob/master/SPECIFICATION.md)
+See [SPECIFICATION](https://github.com/christophercliff/flatmarket-schema/blob/master/SPECIFICATION.md).
 
 ## Contributing
 
