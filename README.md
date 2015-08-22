@@ -7,7 +7,7 @@ Made possible By [JSON Expert](https://json.expert/), the easiest way to create 
 [![Build Status](https://circleci.com/gh/christophercliff/flatmarket.svg?style=shield)](https://circleci.com/gh/christophercliff/flatmarket)
 [![codecov.io](http://codecov.io/github/christophercliff/flatmarket/coverage.svg?branch=master)](http://codecov.io/github/christophercliff/flatmarket?branch=master)
 
-Flatmarket is a free, open source e-commerce platform for static websites. It's simple architecture makes it extremely reliable, secure, and inexpensive to operate.
+Flatmarket is a free, open source e-commerce platform for static websites. Its simple architecture makes it extremely reliable, secure, and inexpensive to operate.
 
 The platform uses [Stripe](https://stripe.com/) for payment processing and is built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/).
 
@@ -74,12 +74,12 @@ $ flatmarket build ./your-schema.json --preview --stripe-secret-key your_stripe_
 
 ## Platform
 
-- [flatmarket-client](https://github.com/christophercliff/flatmarket-client) A web client for communicating with flatmarket-server.
+- [flatmarket-client](https://github.com/christophercliff/flatmarket-client) A browser client for Flatmarket.
 - [flatmarket-example](https://github.com/christophercliff/flatmarket-example) A complete example of a Flatmarket.
-- [flatmarket-schema](https://github.com/christophercliff/flatmarket-schema) A utility for creating a JSON representation of a Flatmarket.
+- [flatmarket-schema](https://github.com/christophercliff/flatmarket-schema) A JSON schema utility for Flatmarket.
 - [flatmarket-server](https://github.com/christophercliff/flatmarket-server) A standalone web server for Flatmarket.
 - [flatmarket-server-heroku](https://github.com/christophercliff/flatmarket-server-heroku) A Flatmarket server for [Heroku](https://www.heroku.com/).
-- [hapi-flatmarket](https://github.com/christophercliff/hapi-flatmarket) A hapi plugin for creating Flatmarket servers.
+- [hapi-flatmarket](https://github.com/christophercliff/hapi-flatmarket) A hapi plugin for Flatmarket.
 
 ## Reference
 
