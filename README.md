@@ -4,8 +4,7 @@ Made possible By [JSON Expert](https://json.expert/), the easiest way to create 
 
 # flatmarket
 
-[![Build Status](https://circleci.com/gh/christophercliff/flatmarket.svg?style=shield)](https://circleci.com/gh/christophercliff/flatmarket)
-[![codecov.io](http://codecov.io/github/christophercliff/flatmarket/coverage.svg?branch=master)](http://codecov.io/github/christophercliff/flatmarket?branch=master)
+[![Build Status](https://circleci.com/gh/christophercliff/flatmarket.svg?style=shield)](https://circleci.com/gh/christophercliff/flatmarket) [![codecov.io](http://codecov.io/github/christophercliff/flatmarket/coverage.svg?branch=master)](http://codecov.io/github/christophercliff/flatmarket?branch=master)
 
 Flatmarket is a free, open source e-commerce platform for static websites. Its simple architecture makes it extremely reliable, secure, and inexpensive to operate.
 
@@ -16,6 +15,15 @@ At its core is a batteries-included CLI to help you get started quickly. Modules
 ## Example
 
 Take a minute to go try [the example](https://json.expert/flatmarket/).
+
+## E-commerce features
+
+- Supports many [global currencies](https://support.stripe.com/questions/which-currencies-does-stripe-support)
+- Subscription billing
+- Address collection
+- Manual [charge authorization](https://support.stripe.com/questions/does-stripe-support-authorize-and-capture)
+- Bitcoin
+- [and more...](https://github.com/christophercliff/flatmarket-schema/blob/master/SPECIFICATION.md)
 
 ## Design goals
 
@@ -28,7 +36,7 @@ Take a minute to go try [the example](https://json.expert/flatmarket/).
 
 Flatmarket is a combination of a static website paired with a [proxy server](https://github.com/christophercliff/flatmarket-server) for sending payments to Stripe securely. The web client and server communicate seamlessly in the background using a [shared schema](https://github.com/christophercliff/flatmarket-schema), represented by a JSON document. The store operator can manage inventory and store configuration simply by updating the JSON document.
 
-## Who is it for?
+## Who it's for
 
 Flatmarket isn't appropriate for every e-commerce project, but it is uniquely suited for the following situations:
 
@@ -39,7 +47,7 @@ Flatmarket isn't appropriate for every e-commerce project, but it is uniquely su
 
 ## Get started
 
-##### 1. Create a [schema](https://github.com/christophercliff/flatmarket-schema) document
+Create a [schema](https://github.com/christophercliff/flatmarket-schema) document at `./src/flatmarket.json`
 
 ```json
 {
@@ -60,16 +68,16 @@ Flatmarket isn't appropriate for every e-commerce project, but it is uniquely su
 }
 ```
 
-##### 2. Install the CLI
+Install the CLI:
 
 ```sh
 npm install -g flatmarket
 ```
 
-##### 3. Start a local Flatmarket server at [https://127.0.0.1:8000/](https://127.0.0.1:8000/)
+Start a local Flatmarket server at [https://127.0.0.1:8000/](https://127.0.0.1:8000/):
 
 ```sh
-$ flatmarket build ./your-schema.json --preview --stripe-secret-key your_stripe_secret_key
+$ flatmarket build --stripe-secret-key your_stripe_secret_key --preview
 ```
 
 ## Platform
