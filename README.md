@@ -16,13 +16,14 @@ At its core is a batteries-included CLI to help you get started quickly. Modules
 
 Take a minute to go try [the example](https://json.expert/flatmarket/).
 
-## E-commerce features
+## Features
 
 - Supports many [global currencies](https://support.stripe.com/questions/which-currencies-does-stripe-support)
 - Subscription billing
 - Address collection
 - Manual [charge authorization](https://support.stripe.com/questions/does-stripe-support-authorize-and-capture)
 - Bitcoin
+- Mobile-ready
 - [and more...](https://github.com/christophercliff/flatmarket-schema/blob/master/SPECIFICATION.md)
 
 ## Design goals
