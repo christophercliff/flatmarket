@@ -2,8 +2,11 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    context: path.resolve(__dirname, './lib/entries/'),
+    context: __dirname,
     devtool: 'eval',
+    entry: {
+        app: './test/entry.js',
+    },
     module: {
         loaders: [
             {
@@ -16,20 +19,7 @@ module.exports = {
             },
             {
                 test: /\.jsx$/,
-                loader: 'jsx-loader',
-            },
-        ],
-        postLoaders: [
-            {
-                test: [
-                    /.*.js$/,
-                    /.*.jsx$/,
-                ],
-                exclude: [
-                    /\/node_modules\//,
-                    /\/test\//,
-                ],
-                loader: 'istanbul-instrumenter',
+                loader: 'jsx',
             },
         ],
     },
@@ -37,7 +27,16 @@ module.exports = {
         dns: 'empty',
         net: 'empty',
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('development'),
+            },
+        }),
+    ],
     resolve: {
-        root: path.resolve(__dirname, './'),
+        alias: {
+            __component__: path.resolve(__dirname, './test/fixtures/component.jsx'),
+        },
     },
 }

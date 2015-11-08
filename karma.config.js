@@ -11,18 +11,6 @@ module.exports = function (config) {
             },
         },
         colors: true,
-        coverageReporter: {
-            reporters: [
-                {
-                    type: 'text',
-                },
-                {
-                    dir: './coverage/',
-                    subdir: './',
-                    type: 'json',
-                },
-            ],
-        },
         files: [
           './test/entry.js',
         ],
@@ -49,7 +37,6 @@ module.exports = function (config) {
         },
         reporters: [
             'progress',
-            'coverage',
         ],
         webpack: webpackConfig,
         webpackMiddleware: {

@@ -1,7 +1,9 @@
 /* global sinon */
+var _ = require('lodash')
 var actions = require('../lib/actions')
 var createStore = require('../lib/create-store')
 var expect = require('chai').expect
+var getSubscribeHandler = require('./helper').getSubscribeHandler
 var reducer = require('../lib/reducer')
 var url = require('url')
 
@@ -18,20 +20,29 @@ var URI = url.format({
 
 describe('store', function () {
 
+    this.timeout(10e3)
+
     var fakeServer
     var store
 
-    this.timeout(10e3)
-
-    beforeEach(function () {
-        store = createStore(reducer)
+    function getServer() {
+        _.has(fakeServer, 'restore') && fakeServer.restore()
         fakeServer = sinon.fakeServer.create()
         fakeServer.autoRespond = true
         fakeServer.autoRespondAfter = 100
+        return fakeServer
+    }
+
+    beforeEach(function () {
+        store = createStore(reducer)
+        store.dispatch(actions.reset(SCHEMA))
+        sinon.stub(store.getState().get('stripeCheckout'), 'open')
+        fakeServer = getServer()
     })
 
     afterEach(function () {
-        fakeServer.restore()
+        store.getState().get('stripeCheckout').open.restore()
+        getServer().restore()
     })
 
     it('should error on invalid schema', function () {
@@ -39,122 +50,159 @@ describe('store', function () {
         expect(store.getState().get('error')).to.equal('invalid_schema')
     })
 
-    it('should error when trying to checkout with invalid product', function () {
-        store.dispatch(actions.reset(SCHEMA))
-        expect(store.getState().toJS().schema).to.deep.equal(SCHEMA)
+    it('should error when trying to checkout with invalid product', function (done) {
+        store.subscribe(getSubscribeHandler([
+            function () {
+                expect(store.getState().get('error')).to.equal('invalid_sku')
+                expect(store.getState().get('charge')).to.equal(undefined)
+            },
+            function () {
+                expect(store.getState().get('charge')).to.equal(undefined)
+            },
+        ], done))
         store.dispatch(actions.checkout('bogus_id'))
-        expect(store.getState().get('error')).to.equal('invalid_sku')
     })
 
-    it('should checkout and cancel', function () {
-        store.dispatch(actions.reset(SCHEMA))
+    it('should checkout and cancel', function (done) {
+        store.subscribe(getSubscribeHandler([
+            function () {
+                expect(store.getState().getIn([
+                    'charge',
+                    'sku',
+                ])).to.equal('001')
+                process.nextTick(function () {
+                    expect(store.getState().get('stripeCheckout').open).to.have.been.calledOnce
+                    store.dispatch(actions.checkoutCancel())
+                })
+            },
+            function () {
+                expect(store.getState().get('charge')).to.equal(undefined)
+            },
+        ], done))
         store.dispatch(actions.checkout('001'))
-        expect(store.getState().getIn([
-            'charge',
-            'sku',
-        ])).to.equal('001')
-        store.dispatch(actions.checkoutCancel())
-        expect(store.getState().get('charge')).to.equal(undefined)
     })
 
     it('should checkout and error when creating a charge', function (done) {
-        fakeServer.respondWith('POST', URI, [
-            400,
-            RESPONSE_HEADERS,
-            JSON.stringify({
-                statusCode: 400,
-                error: 'Bad Request',
-            }),
-        ])
-        store.dispatch(actions.reset(SCHEMA))
-        store.dispatch(actions.checkout('001'))
-        var token = {
-            email: 'test@email.com',
-            id: 'tok_just_a_token',
-            type: 'card',
-        }
-        var promise = actions.createCharge(token)(store.dispatch, store.getState)
-        expect(store.getState().get('charge').toJS()).to.deep.equal({
-            email: 'test@email.com',
-            sku: '001',
-            token: 'tok_just_a_token',
-        })
-        promise
-            .then(function () {
+        store.subscribe(getSubscribeHandler([
+            function () {
+                expect(store.getState().getIn([
+                    'charge',
+                    'sku',
+                ])).to.equal('001')
+                process.nextTick(function () {
+                    expect(store.getState().get('stripeCheckout').open).to.have.been.calledOnce
+                    getServer().respondWith('POST', URI, [
+                        400,
+                        RESPONSE_HEADERS,
+                        JSON.stringify({
+                            statusCode: 400,
+                            error: 'Bad Request',
+                        }),
+                    ])
+                    store.dispatch(actions.createCharge({
+                        email: 'test@email.com',
+                        id: 'tok_just_a_token',
+                        type: 'card',
+                    }))
+                })
+            },
+            function () {
+                expect(store.getState().get('charge').toJS()).to.deep.equal({
+                    email: 'test@email.com',
+                    sku: '001',
+                    token: 'tok_just_a_token',
+                })
+            },
+            function () {
                 expect(store.getState().get('error')).to.equal('charge_failed')
                 expect(store.getState().get('charge')).to.equal(undefined)
-                return done()
-            })
-            .caught(done)
+            },
+        ], done))
+        store.dispatch(actions.checkout('001'))
     })
 
     it('should checkout and create a charge', function (done) {
-        fakeServer.respondWith('POST', URI, [
-            200,
-            RESPONSE_HEADERS,
-            JSON.stringify({
-                status: 'ok',
-            }),
-        ])
-        store.dispatch(actions.reset(SCHEMA))
-        store.dispatch(actions.checkout('001'))
-        var token = {
-            email: 'test@email.com',
-            id: 'tok_just_a_token',
-            type: 'card',
-        }
-        var promise = actions.createCharge(token)(store.dispatch, store.getState)
-        expect(store.getState().get('charge').toJS()).to.deep.equal({
-            email: 'test@email.com',
-            sku: '001',
-            token: 'tok_just_a_token',
-        })
-        promise
-            .then(function () {
+        store.subscribe(getSubscribeHandler([
+            function () {
+                expect(store.getState().getIn([
+                    'charge',
+                    'sku',
+                ])).to.equal('001')
+                process.nextTick(function () {
+                    expect(store.getState().get('stripeCheckout').open).to.have.been.calledOnce
+                    var args = _.chain(store.getState().get('stripeCheckout').open.getCall(0).args)
+                        .first()
+                        .pick([
+                            'amount',
+                        ])
+                        .value()
+                    expect(args).to.deep.equal({
+                        amount: 123,
+                    })
+                    getServer().respondWith('POST', URI, [
+                        200,
+                        RESPONSE_HEADERS,
+                        JSON.stringify({
+                            status: 'ok',
+                        }),
+                    ])
+                    store.dispatch(actions.createCharge({
+                        email: 'test@email.com',
+                        id: 'tok_just_a_token',
+                        type: 'card',
+                    }))
+                })
+            },
+            function () {
+                expect(store.getState().get('charge').toJS()).to.deep.equal({
+                    email: 'test@email.com',
+                    sku: '001',
+                    token: 'tok_just_a_token',
+                })
+            },
+            function () {
                 expect(store.getState().get('charge')).to.equal(undefined)
-                return done()
-            })
-            .caught(done)
+            },
+        ], done))
+        store.dispatch(actions.checkout('001'))
     })
 
     it('should set the server status to error', function (done) {
-        fakeServer.respondWith('GET', URI, [
+        store.subscribe(getSubscribeHandler([
+            function () {
+                expect(store.getState().get('status')).to.equal('begin')
+            },
+            function () {
+                expect(store.getState().get('status')).to.equal('failure')
+            },
+        ], done))
+        getServer().respondWith('GET', URI, [
             400,
             RESPONSE_HEADERS,
             JSON.stringify({
                 error: 'foo',
             }),
         ])
-        store.dispatch(actions.reset(SCHEMA))
-        expect(store.getState().get('status')).to.equal(undefined)
-        var promise = actions.updateStatus()(store.dispatch, store.getState)
-        expect(store.getState().get('status')).to.equal('begin')
-        promise
-            .then(function () {
-                expect(store.getState().get('status')).to.equal('failure')
-                return done()
-            })
-            .caught(done)
+        store.dispatch(actions.updateStatus())
     })
 
     it('should set the server status to success', function (done) {
-        fakeServer.respondWith('GET', URI, [
+        store.subscribe(getSubscribeHandler([
+            function () {
+                expect(store.getState().get('status')).to.equal('begin')
+            },
+            function () {
+                expect(store.getState().get('status')).to.equal('success')
+            },
+        ], done))
+        getServer().respondWith('GET', URI, [
             200,
             RESPONSE_HEADERS,
             JSON.stringify({
                 status: 'ok',
             }),
         ])
-        store.dispatch(actions.reset(SCHEMA))
-        expect(store.getState().get('status')).to.equal(undefined)
-        var promise = actions.updateStatus()(store.dispatch, store.getState)
-        expect(store.getState().get('status')).to.equal('begin')
-        promise
-            .then(function () {
-                expect(store.getState().get('status')).to.equal('success')
-                return done()
-            })
-            .caught(done)
+        store.dispatch(actions.updateStatus())
     })
 
 })
