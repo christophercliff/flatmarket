@@ -17,7 +17,8 @@
   "scripts": {
     "style": "./node_modules/crispy/node_modules/.bin/eslint -c ./node_modules/crispy/.eslintrc ./lib/ ./test/*.spec.js",
     "test-lib": "./node_modules/.bin/mocha ./test/lib.spec.js --reporter spec --grep ''",
-    "test-ui": "./node_modules/.bin/karma start ./karma.config.js"
+    "test-ui": "./node_modules/.bin/karma start ./karma.config.js --single-run",
+    "test-ui-dev": "./node_modules/.bin/karma start ./karma.config.js"
   },
   "dependencies": {
     "babel": "^5.8.21",

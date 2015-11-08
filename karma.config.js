@@ -51,7 +51,6 @@ module.exports = function (config) {
             'progress',
             'coverage',
         ],
-        singleRun: true,
         webpack: webpackConfig,
         webpackMiddleware: {
             noInfo: true,
