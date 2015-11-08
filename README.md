@@ -6,7 +6,7 @@ Made possible By [JSON Expert](https://json.expert/), the easiest way to create 
 
 [![Build Status](https://circleci.com/gh/christophercliff/flatmarket.svg?style=shield)](https://circleci.com/gh/christophercliff/flatmarket) [![codecov.io](http://codecov.io/github/christophercliff/flatmarket/coverage.svg?branch=master)](http://codecov.io/github/christophercliff/flatmarket?branch=master)
 
-Flatmarket is a free, open source e-commerce platform for static websites. Its simple architecture makes it extremely reliable, secure, and inexpensive to operate.
+Flatmarket is a free, open source e-commerce platform for static websites. It is reliable, secure, and inexpensive to operate.
 
 The platform uses [Stripe](https://stripe.com/) for payment processing and is built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/).
 
