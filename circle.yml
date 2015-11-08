@@ -1,3 +1,7 @@
 test:
+  override:
+    - npm run style
+    - npm run test-ui
+    - npm run test-lib
   post:
     - cat ./coverage/coverage-final.json | ./node_modules/.bin/codecov
