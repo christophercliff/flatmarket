@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "chai": "^3.0.0",
-    "codecov.io": "^0.1.5",
+    "codecov": "^1.0.1",
     "crispy": "^4.0.0",
     "istanbul": "^0.3.17",
     "mocha": "^2.2.5"
