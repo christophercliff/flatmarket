@@ -18,9 +18,10 @@ Take a minute to go try [the example](https://json.expert/flatmarket/).
 
 ## Features
 
-- Supports many [global currencies](https://support.stripe.com/questions/which-currencies-does-stripe-support)
+- Customizable React UI (or use whatever frontend you prefer)
+- Billing and shipping address collection
 - Subscription billing
-- Address collection
+- Supports many [global currencies](https://support.stripe.com/questions/which-currencies-does-stripe-support)
 - Manual [charge authorization](https://support.stripe.com/questions/does-stripe-support-authorize-and-capture)
 - Bitcoin
 - Mobile-ready
@@ -89,6 +90,7 @@ $ flatmarket --stripe-secret-key your_stripe_secret_key --preview
 - [flatmarket-server](https://github.com/christophercliff/flatmarket-server) A standalone web server for Flatmarket.
 - [flatmarket-server-heroku](https://github.com/christophercliff/flatmarket-server-heroku) A Flatmarket server for [Heroku](https://www.heroku.com/).
 - [hapi-flatmarket](https://github.com/christophercliff/hapi-flatmarket) A hapi plugin for Flatmarket.
+- [hapi-stripe-webhooks](https://github.com/christophercliff/hapi-stripe-webhooks) Listen for notifications from Stripe.
 
 ## Reference
 
