@@ -3,7 +3,7 @@
   "description": "A free, open source e-commerce platform for static websites.",
   "version": "2.0.1",
   "engines": {
-    "node": "0.10.x"
+    "node": "0.10.x || 4.x"
   },
   "license": "MIT",
   "repository": {
