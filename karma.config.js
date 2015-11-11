@@ -1,9 +1,67 @@
-var webpackConfig = require('./webpack.config.test')
+/* eslint global-require: 0 */
+var _ = require('lodash')
+var commander = require('commander')
+var Joi = require('joi')
+var testWebpackConfig = require('./webpack.config.test')
+
+var MODES = {
+    coverage: {
+        id: 'coverage',
+    },
+    dev: {
+        id: 'dev',
+    },
+    test: {
+        id: 'test',
+    },
+}
+var options = Joi.attempt(_.pick(commander
+    .option('--mode [mode]')
+    .parse(process.argv), [
+        'mode',
+    ]), Joi.object().keys({
+        mode: Joi.string().valid(_.pluck(MODES, 'id')).default(MODES.test.id),
+    }))
 
 module.exports = function (config) {
-    config.set({
+    var override
+    switch (options.mode) {
+        case MODES.coverage.id:
+            override = {
+                coverageReporter: {
+                    reporters: [
+                        {
+                            type: 'text',
+                        },
+                        {
+                            dir: './coverage/',
+                            subdir: './json/',
+                            type: 'json',
+                        },
+                        {
+                            dir: './coverage/',
+                            subdir: './html/',
+                            type: 'html',
+                        },
+                    ],
+                },
+                reporters: [
+                    'coverage',
+                ],
+                singleRun: true,
+                webpack: require('./webpack.config.coverage'),
+            }
+            break
+        case MODES.dev.id:
+            override = {
+                singleRun: false,
+                webpack: require('./webpack.config.test-dev'),
+            }
+            break
+    }
+    config.set(_.merge({
         browsers: [
-            'Chrome'
+            'Chrome',
         ],
         client: {
             mocha: {
@@ -11,20 +69,8 @@ module.exports = function (config) {
             },
         },
         colors: true,
-        coverageReporter: {
-            reporters: [
-                {
-                    type: 'text',
-                },
-                {
-                    dir: './coverage/',
-                    subdir: './',
-                    type: 'json',
-                },
-            ],
-        },
         files: [
-          './test/entry.js',
+            './lib/ui/test/entry.js',
         ],
         frameworks: [
             'mocha',
@@ -42,19 +88,18 @@ module.exports = function (config) {
         ],
         port: 9876,
         preprocessors: {
-            './test/entry.js': [
+            './lib/ui/test/entry.js': [
                 'webpack',
                 'sourcemap',
             ],
         },
         reporters: [
             'progress',
-            'coverage',
         ],
         singleRun: true,
-        webpack: webpackConfig,
+        webpack: testWebpackConfig,
         webpackMiddleware: {
             noInfo: true,
         },
-    })
+    }, override))
 }

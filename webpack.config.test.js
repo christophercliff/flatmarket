@@ -2,8 +2,11 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    context: path.resolve(__dirname, './lib/entries/'),
+    context: path.resolve(__dirname, './lib/ui/'),
     devtool: 'eval',
+    entry: {
+        app: './test/entry.js',
+    },
     module: {
         loaders: [
             {
@@ -16,20 +19,15 @@ module.exports = {
             },
             {
                 test: /\.jsx$/,
-                loader: 'jsx-loader',
+                loader: 'jsx',
             },
-        ],
-        postLoaders: [
             {
-                test: [
-                    /.*.js$/,
-                    /.*.jsx$/,
-                ],
-                exclude: [
-                    /\/node_modules\//,
-                    /\/test\//,
-                ],
-                loader: 'istanbul-instrumenter',
+                test: /\.less$/,
+                loader: 'style!css!less',
+            },
+            {
+                test: /\.woff$/,
+                loader: 'url-loader?limit=100000',
             },
         ],
     },
@@ -37,7 +35,16 @@ module.exports = {
         dns: 'empty',
         net: 'empty',
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('test'),
+            },
+        }),
+    ],
     resolve: {
-        root: path.resolve(__dirname, './'),
+        alias: {
+            __component__: path.resolve(__dirname, './lib/ui/themes/default/index.jsx'),
+        },
     },
 }
