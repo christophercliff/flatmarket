@@ -1,3 +1,4 @@
+/* eslint global-require: 0 */
 var _ = require('lodash')
 var commander = require('commander')
 var Joi = require('joi')

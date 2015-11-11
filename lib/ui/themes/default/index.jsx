@@ -1,3 +1,5 @@
+/* eslint global-require: 0 */
+/* eslint no-process-env: 0 */
 var _ = require('lodash')
 var classnames = require('classnames')
 var React = require('react')
@@ -54,7 +56,7 @@ module.exports = React.createClass({
                                     onClick={_.bind(this.handleClick, this, id)}
                                 >
                                     <div>{product.get('name')} / {product.get('description')}</div>
-                                    <div className="cta">Buy now ${product.get('amount')/100}</div>
+                                    <div className="cta">Buy now ${product.get('amount') / 100}</div>
                                 </a>
                             </section>
                         )
