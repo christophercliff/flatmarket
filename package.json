@@ -22,7 +22,7 @@
   "devDependencies": {
     "chai": "^3.0.0",
     "codecov": "^1.0.1",
-    "crispy": "^4.0.0",
+    "crispy": "^5.0.1",
     "istanbul": "^0.3.17",
     "mocha": "^2.2.5"
   }
