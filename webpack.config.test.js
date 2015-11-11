@@ -30,13 +30,13 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('development'),
+                NODE_ENV: JSON.stringify('test'),
             },
         }),
     ],
     resolve: {
         alias: {
-            __component__: path.resolve(__dirname, './test/fixtures/component.jsx'),
+            __component__: path.resolve(__dirname, './lib/themes/default/index.jsx'),
         },
     },
 }

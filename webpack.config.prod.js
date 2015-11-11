@@ -46,7 +46,7 @@ module.exports = {
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),
                 PLATFORM: JSON.stringify('browser'),
-            }
+            },
         }),
         new ExtractTextPlugin('[name].css', {
             allChunks: true,

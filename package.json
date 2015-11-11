@@ -15,10 +15,12 @@
     "flatmarket": "./bin/flatmarket"
   },
   "scripts": {
-    "style": "./node_modules/crispy/node_modules/.bin/eslint -c ./node_modules/crispy/.eslintrc ./lib/ ./test/*.spec.js",
+    "coverage-lib": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha ./test/lib.spec.js",
+    "coverage-ui": "./node_modules/.bin/karma start ./karma.config.js --mode coverage",
+    "style": "./node_modules/crispy/node_modules/.bin/eslint -c ./node_modules/crispy/.eslintrc --ext '.js,.jsx' ./ --ignore-pattern '**/+(coverage|fixtures|node_modules)/**'",
     "test-lib": "./node_modules/.bin/mocha ./test/lib.spec.js --reporter spec --grep ''",
-    "test-ui": "./node_modules/.bin/karma start ./karma.config.js --single-run",
-    "test-ui-dev": "./node_modules/.bin/karma start ./karma.config.js"
+    "test-ui": "./node_modules/.bin/karma start ./karma.config.js",
+    "test-ui-dev": "./node_modules/.bin/karma start ./karma.config.js --mode dev"
   },
   "dependencies": {
     "babel": "^5.8.21",

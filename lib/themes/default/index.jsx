@@ -23,17 +23,28 @@ module.exports = React.createClass({
     render: function () {
         var canCreateCharge = !this.props.charge && !this.props.error
         var isCharging = !!this.props.charge
+        var name = this.props.schema.getIn([
+            'info',
+            'name',
+        ])
+        var description = this.props.schema.getIn([
+            'info',
+            'description',
+        ])
         return (
             <div className="container">
                 <header>
-                    <h1>{this.props.schema.info.name}</h1>
-                    {(!_.isEmpty(this.props.schema.info.description)) && <p>{this.props.schema.info.description}</p>}
+                    <h1>{name}</h1>
+                    {!_.isEmpty(description) && <p>{description}</p>}
                 </header>
                 <main>
-                    {_.map(this.props.schema.products, function (product, id) {
+                    {this.props.schema.get('products').map(function (product, id) {
                         return (
                             <section key={id}>
-                                {(!_.isEmpty(product.images)) && <img src={_.first(product.images)} />}
+                                <img src={product.getIn([
+                                    'images',
+                                    0,
+                                ])} />
                                 <a
                                     className={classnames({
                                         disabled: !canCreateCharge,
@@ -42,12 +53,12 @@ module.exports = React.createClass({
                                     href="#"
                                     onClick={_.bind(this.handleClick, this, id)}
                                 >
-                                    <div>{product.name} / {product.description}</div>
-                                    <div className="cta">Buy now ${product.amount/100}</div>
+                                    <div>{product.get('name')} / {product.get('description')}</div>
+                                    <div className="cta">Buy now ${product.get('amount')/100}</div>
                                 </a>
                             </section>
                         )
-                    }, this)}
+                    }, this).toList()}
                 </main>
                 <footer>
                     <p>This website created by <a href="https://json.expert/flatmarket/">Flatmarket</a>.</p>
