@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    context: path.resolve(__dirname, './lib/'),
+    context: path.resolve(__dirname, './lib/ui/'),
     devtool: 'source-map',
     entry: {
         app: './entry',

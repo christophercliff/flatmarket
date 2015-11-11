@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    context: __dirname,
+    context: path.resolve(__dirname, './lib/ui/'),
     devtool: 'eval',
     entry: {
         app: './test/entry.js',
@@ -21,6 +21,14 @@ module.exports = {
                 test: /\.jsx$/,
                 loader: 'jsx',
             },
+            {
+                test: /\.less$/,
+                loader: 'style!css!less',
+            },
+            {
+                test: /\.woff$/,
+                loader: 'url-loader?limit=100000',
+            },
         ],
     },
     node: {
@@ -36,7 +44,7 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            __component__: path.resolve(__dirname, './lib/themes/default/index.jsx'),
+            __component__: path.resolve(__dirname, './lib/ui/themes/default/index.jsx'),
         },
     },
 }

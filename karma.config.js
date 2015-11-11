@@ -69,7 +69,7 @@ module.exports = function (config) {
         },
         colors: true,
         files: [
-            './test/entry.js',
+            './lib/ui/test/entry.js',
         ],
         frameworks: [
             'mocha',
@@ -87,7 +87,7 @@ module.exports = function (config) {
         ],
         port: 9876,
         preprocessors: {
-            './test/entry.js': [
+            './lib/ui/test/entry.js': [
                 'webpack',
                 'sourcemap',
             ],
