@@ -3,7 +3,7 @@
   "description": "A JSON schema utility for Flatmarket.",
   "version": "1.0.1",
   "engines": {
-    "node": "0.10.x"
+    "node": "0.10.x || 4.x"
   },
   "license": "MIT",
   "repository": {
