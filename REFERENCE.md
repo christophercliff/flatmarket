@@ -1,6 +1,6 @@
 # v1.0.x API Reference
 
-## `build(options)`
+## `flatmarket(options)`
 
 ### `options`
 

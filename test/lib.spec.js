@@ -18,7 +18,7 @@ describe('lib', function () {
             schema: path.resolve(__dirname, './fixtures/basic/src/flatmarket.json'),
             source: path.resolve(__dirname, './fixtures/basic/src/'),
         }
-        lib.build(options)
+        lib(options)
             .then(function () {
                 return done()
             })
