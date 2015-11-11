@@ -89,5 +89,5 @@ image | `String` |
 name | `String` |
 panelLabel | `String` |
 publishableKey | `String` | **Required.**
-shippingAddress | `Boolean` |
+shippingAddress | `Boolean` | `billingAddress` must be set to `true`.
 zipCode | `Boolean` |
