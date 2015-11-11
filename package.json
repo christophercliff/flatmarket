@@ -23,7 +23,8 @@
     "test-ui-dev": "./node_modules/.bin/karma start ./karma.config.js --mode dev"
   },
   "dependencies": {
-    "babel": "^5.8.21",
+    "babel-core": "^6.1.4",
+    "babel-plugin-transform-react-jsx": "^6.1.4",
     "bluebird": "^2.10.2",
     "classnames": "^2.1.3",
     "commander": "^2.8.1",
