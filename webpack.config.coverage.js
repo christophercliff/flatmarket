@@ -13,7 +13,8 @@ module.exports = _.merge(testConfig, {
                 exclude: [
                     /\/node_modules\//,
                     /\/test\//,
-                    /lib\/env.js$/,
+                    /\/ui\/env.js$/,
+                    /\/themes\//,
                 ],
                 loader: 'istanbul-instrumenter',
             },
