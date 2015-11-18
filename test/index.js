@@ -84,4 +84,47 @@ describe('schema', function () {
         })).to.be.true
     })
 
+    it('should allow shippingAddress', function () {
+        Joi.assert({
+            info: {
+                name: 'test',
+            },
+            products: {
+                product_1: {
+                    amount: 1,
+                },
+            },
+            server: {
+                host: 'mysite.com',
+            },
+            stripe: {
+                billingAddress: true,
+                publishableKey: 'just_a_fake_key',
+                shippingAddress: true,
+            },
+        }, schema)
+    })
+
+    it('should throw if has shippingAddress but not billingAddress', function () {
+        expect(function () {
+            Joi.assert({
+                info: {
+                    name: 'test',
+                },
+                products: {
+                    product_1: {
+                        amount: 1,
+                    },
+                },
+                server: {
+                    host: 'mysite.com',
+                },
+                stripe: {
+                    publishableKey: 'just_a_fake_key',
+                    shippingAddress: true,
+                },
+            }, schema)
+        }).to.throw()
+    })
+
 })

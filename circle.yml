@@ -1,3 +1,8 @@
 test:
+  override:
+    - npm run style
+    - nvm use 4 && npm run test
+    - nvm use 0.10 && npm run test
   post:
-    - npm run coverage && cat ./coverage/coverage.json | ./node_modules/.bin/codecov
+    - npm run coverage
+    - ./node_modules/.bin/codecov --file=./coverage/coverage.json
