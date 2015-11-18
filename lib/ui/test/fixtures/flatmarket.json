@@ -11,6 +11,8 @@
     "host": "foo.com"
   },
   "stripe": {
-    "publishableKey": "just_a_fake_key"
+    "billingAddress": true,
+    "publishableKey": "just_a_fake_key",
+    "shippingAddress": true
   }
 }
