@@ -12,8 +12,10 @@
   },
   "main": "./lib/",
   "scripts": {
-    "style": "./node_modules/crispy/node_modules/.bin/eslint -c ./node_modules/crispy/.eslintrc ./lib/ ./test/",
-    "test": "./node_modules/karma/bin/karma start karma.config.js"
+    "coverage": "./node_modules/karma/bin/karma start karma.config.js --mode coverage",
+    "style": "./node_modules/crispy/node_modules/.bin/eslint -c ./node_modules/crispy/.eslintrc --ext '.js,.jsx' ./ --ignore-pattern '**/+(coverage|fixtures|node_modules)/**'",
+    "test": "./node_modules/karma/bin/karma start karma.config.js",
+    "test-dev": "./node_modules/karma/bin/karma start karma.config.js --mode dev"
   },
   "dependencies": {
     "bluebird": "^2.9.30",
@@ -27,6 +29,7 @@
   "devDependencies": {
     "chai": "^3.0.0",
     "codecov": "^1.0.1",
+    "commander": "^2.9.0",
     "crispy": "^5.0.1",
     "istanbul-instrumenter-loader": "^0.1.3",
     "karma": "^0.12.37",
