@@ -1,8 +1,9 @@
 test:
   override:
+    - npm run style
     - nvm use 4 && npm run test-lib
     - nvm use 0.10 && npm run test-lib
-    - npm run style
     - npm run test-ui
   post:
-    - npm run coverage-ui && ./node_modules/.bin/codecov --file=./coverage/json/coverage-final.json
+    - npm run coverage-ui
+    - ./node_modules/.bin/codecov --file=./coverage/json/coverage-final.json
