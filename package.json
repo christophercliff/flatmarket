@@ -20,7 +20,7 @@
   "dependencies": {
     "bluebird": "^2.9.30",
     "boom": "^2.8.0",
-    "hapi-flatmarket": "^1.0.0",
+    "hapi-flatmarket": "^1.1.0",
     "joi": "^6.6.0",
     "lodash": "^3.10.0",
     "reqwest": "^2.0.1",
