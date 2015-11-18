@@ -1,4 +1,4 @@
-# v1.0.x API Reference
+# v2.1.x API Reference
 
 ## `flatmarket(options)`
 
