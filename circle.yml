@@ -5,4 +5,4 @@ test:
     - nvm use 0.10 && npm run test
   post:
     - npm run coverage
-    - ./node_modules/.bin/codecov --file=./coverage/coverage.json
+    - ./node_modules/.bin/codecov --file=./coverage/json/coverage-final.json
