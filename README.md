@@ -19,7 +19,7 @@ Take a minute to go try [the example](https://json.expert/flatmarket/).
 ## Features
 
 - Customizable React UI (or use whatever frontend you prefer)
-- Billing and shipping address collection
+- Separate billing and shipping addresses
 - Subscription billing
 - Supports many [global currencies](https://support.stripe.com/questions/which-currencies-does-stripe-support)
 - Manual [charge authorization](https://support.stripe.com/questions/does-stripe-support-authorize-and-capture)
