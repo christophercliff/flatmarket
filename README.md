@@ -10,11 +10,22 @@ Flatmarket is a free, open source e-commerce platform for static websites. It is
 
 The platform uses [Stripe](https://stripe.com/) for payment processing and is built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/).
 
-At its core is a batteries-included CLI to help you get started quickly. Modules are also packaged individually so you can easily customize your rig.
+At its core is a batteries-included CLI to help you get started quickly. Modules are also packaged individually so you can customize your rig.
+
+## How it works
+
+The Flatmarket architecture consists of a static website paired with a [proxy server](https://github.com/christophercliff/flatmarket-server) for sending payments to Stripe. The browser and server share a public schema ([represented by a JSON document](https://github.com/christophercliff/flatmarket-schema)) to prevent charge tampering. The store operator can manage inventory and store configuration by updating the schema document.
 
 ## Example
 
 Take a minute to go try [the example](https://json.expert/flatmarket/).
+
+## Design goals
+
+- [x] It should cost next-to-nothing to operate.
+- [x] It should should be reliable and scalable. This is achieved by offloading expensive and complicated operations to third-party services.
+- [x] It should be secure.
+- [x] It should be easy to customize, update, and deploy.
 
 ## Features
 
@@ -27,18 +38,7 @@ Take a minute to go try [the example](https://json.expert/flatmarket/).
 - Mobile-ready
 - [and more...](https://github.com/christophercliff/flatmarket-schema/blob/master/SPECIFICATION.md)
 
-## Design goals
-
-- [x] It should cost next-to-nothing to operate.
-- [x] It should should be reliable and scalable. This is achieved by offloading expensive and complicated operations to third-party services.
-- [x] It should be secure.
-- [x] It should be easy to customize, update, and deploy.
-
-## How it works
-
-Flatmarket is a combination of a static website paired with a [proxy server](https://github.com/christophercliff/flatmarket-server) for sending payments to Stripe securely. The web client and server communicate seamlessly in the background using a [shared schema](https://github.com/christophercliff/flatmarket-schema), represented by a JSON document. The store operator can manage inventory and store configuration simply by updating the JSON document.
-
-## Who it's for
+## Use cases
 
 Flatmarket isn't appropriate for every e-commerce project, but it is uniquely suited for the following situations:
 
@@ -84,7 +84,7 @@ Create a [schema](https://github.com/christophercliff/flatmarket-schema) documen
 
 ### 3.
 
-Build the Flatmarket website and deploy to your favorite host!
+Build the Flatmarket website and deploy to your favorite static web host.
 
 ```sh
 $ flatmarket ./src/flatmarket.json
