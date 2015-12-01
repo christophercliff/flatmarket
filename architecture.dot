@@ -1,0 +1,22 @@
+digraph architecture {
+    rankdir = LR;
+
+    browser [shape=circle label="Web Browser"];
+    static [shape=square label="Static File Server" style=dotted];
+    proxy [shape=square label="Flatmarket Server"];
+    stripe [shape=square label="Stripe" width=2];
+
+    static -> browser [style=dotted label="1"];
+    browser -> stripe [label="2" dir=both];
+    browser -> proxy [label="3"];
+    static -> proxy [style=dotted label="4"];
+    proxy -> stripe [label="5"];
+
+    subgraph cluster_hotlanta {
+        color=white
+        static;
+        proxy;
+        stripe;
+    }
+
+}
