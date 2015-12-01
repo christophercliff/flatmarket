@@ -16,6 +16,8 @@ At its core is a batteries-included CLI to help you get started quickly. Modules
 
 The Flatmarket architecture consists of a static website paired with a [proxy server](https://github.com/christophercliff/flatmarket-server) for sending payments to Stripe. The browser and server share a public schema ([represented by a JSON document](https://github.com/christophercliff/flatmarket-schema)) to prevent charge tampering. The store operator can manage inventory and store configuration by updating the schema document.
 
+### Architecture
+
 ![Architecture Diagram](architecture.png)
 
 1. The web browser loads the single-page app from the static file server (e.g. AWS S3).
