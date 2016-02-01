@@ -44,7 +44,7 @@ module.exports = {
     ],
     resolve: {
         alias: {
-            __component__: path.resolve(__dirname, './lib/ui/themes/default/index.jsx'),
+            __component__: path.resolve(__dirname, './lib/ui/component.js'),
         },
     },
 }

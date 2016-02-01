@@ -114,6 +114,10 @@ Read the [API reference](https://github.com/christophercliff/flatmarket/blob/mas
 - [hapi-flatmarket](https://github.com/christophercliff/hapi-flatmarket) A hapi plugin for Flatmarket.
 - [hapi-stripe-webhooks](https://github.com/christophercliff/hapi-stripe-webhooks) Listen for notifications from Stripe.
 
+## Themes
+
+- [Bananas](https://github.com/christophercliff/flatmarket-theme-bananas)
+
 ## Reference
 
 See [REFERENCE](https://github.com/christophercliff/flatmarket/blob/master/REFERENCE.md).
