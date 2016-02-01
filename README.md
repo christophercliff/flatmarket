@@ -1,7 +1,3 @@
-Made possible By [JSON Expert](https://json.expert/), the easiest way to create a web-ready API.
-
----
-
 # flatmarket
 
 [![Build Status](https://circleci.com/gh/christophercliff/flatmarket.svg?style=shield)](https://circleci.com/gh/christophercliff/flatmarket) [![codecov.io](http://codecov.io/github/christophercliff/flatmarket/coverage.svg?branch=master)](http://codecov.io/github/christophercliff/flatmarket?branch=master)
@@ -26,9 +22,9 @@ The Flatmarket architecture consists of a static website paired with a [proxy se
 4. The Flatmarket server pulls the product information from `flatmarket.json` hosted on the static file server.
 5. The Flatmarket server sends the charge to Stripe.
 
-## Example
+## Live Demo
 
-Take a minute to go try [the example](https://json.expert/flatmarket/).
+Take a minute to go try [the live demo](https://christophercliff.com/flatmarket/).
 
 ## Design goals
 
