@@ -1,13 +1,9 @@
-Made possible By [JSON Expert](https://json.expert/), the easiest way to create a web-ready API.
-
----
-
 # flatmarket-schema
 
 [![Build Status](https://circleci.com/gh/christophercliff/flatmarket-schema.svg?style=shield)](https://circleci.com/gh/christophercliff/flatmarket-schema)
 [![codecov.io](http://codecov.io/github/christophercliff/flatmarket-schema/coverage.svg?branch=master)](http://codecov.io/github/christophercliff/flatmarket-schema?branch=master)
 
-A JSON schema utility for [Flatmarket](https://json.expert/flatmarket/).
+A JSON schema utility for [Flatmarket](https://github.com/christophercliff/flatmarket).
 
 ## Installation
 
