@@ -14,7 +14,6 @@ module.exports = _.merge(testConfig, {
                     /\/node_modules\//,
                     /\/test\//,
                     /\/ui\/env.js$/,
-                    /\/themes\//,
                 ],
                 loader: 'istanbul-instrumenter',
             },
