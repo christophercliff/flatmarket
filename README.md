@@ -1,13 +1,9 @@
-Made possible By [JSON Expert](https://json.expert/), the easiest way to create a web-ready API.
-
----
-
 # flatmarket-client
 
 [![Build Status](https://circleci.com/gh/christophercliff/flatmarket-client.svg?style=shield)](https://circleci.com/gh/christophercliff/flatmarket-client)
 [![codecov.io](http://codecov.io/github/christophercliff/flatmarket-client/coverage.svg?branch=master)](http://codecov.io/github/christophercliff/flatmarket-client?branch=master)
 
-A browser client for [Flatmarket](https://json.expert/flatmarket/).
+A browser client for [Flatmarket](https://github.com/christophercliff/flatmarket).
 
 ## Installation
 
