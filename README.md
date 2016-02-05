@@ -59,46 +59,13 @@ Flatmarket isn't appropriate for every e-commerce project, but it is uniquely su
 $ npm install flatmarket
 ```
 
-## Quick Start
-
-### 1.
-
-[Deploy](https://heroku.com/deploy?template=https://github.com/christophercliff/flatmarket-server-heroku) a Flatmarket server to your Heroku account.
-
-### 2.
-
-Create a [schema](https://github.com/christophercliff/flatmarket-schema) document at `./src/flatmarket.json`
-
-```json
-{
-  "info": {
-    "name": "Your Store"
-  },
-  "products": {
-    "sku_001": {
-      "amount": 1000
-    }
-  },
-  "server": {
-    "host": "your-flatmarket-server.herokuapp.com"
-  },
-  "stripe": {
-    "publishableKey": "your_publishable_key"
-  }
-}
-```
-
-### 3.
-
-Build the Flatmarket website and deploy to your favorite static web host.
+## Get Started
 
 ```sh
-$ flatmarket ./src/flatmarket.json
+$ flatmarket src/flatmarket.json --component your-theme.jsx
 ```
 
-### 4.
-
-Read the [API reference](https://github.com/christophercliff/flatmarket/blob/master/REFERENCE.md) and [customization guide](https://github.com/christophercliff/flatmarket/blob/master/CUSTOMIZATION.md) to learn more.
+Visit the [example repo](https://github.com/christophercliff/flatmarket-example) for a working example and read the [API Reference](https://github.com/christophercliff/flatmarket/blob/master/REFERENCE.md) for a complete list of options.
 
 ## Platform
 
