@@ -24,7 +24,7 @@ The Flatmarket architecture consists of a static website paired with a [proxy se
 
 ## Live Demo
 
-Take a minute to go try [the live demo](https://christophercliff.com/flatmarket/).
+Take a minute to go try [the live demo](https://christophercliff.com/flatmarket/). Charges can be submitted using credit card number `4242 4242 4242 4242`. A test charge will be created in Stripe, so you should avoid submitting personal information.
 
 ## Design goals
 
