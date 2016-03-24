@@ -127,4 +127,40 @@ describe('schema', function () {
         }).to.throw()
     })
 
+    it('should set default value for top-level currency', function () {
+        var payload = {
+            info: {
+                name: 'test',
+            },
+            products: {
+                product_1: {
+                    amount: 1,
+                },
+            },
+            server: {
+                host: 'mysite.com',
+            },
+            stripe: {
+                publishableKey: 'just_a_fake_key',
+            },
+        }
+        expect(Joi.validate(payload, schema).value).to.deep.equal({
+            info: {
+                name: 'test',
+            },
+            products: {
+                product_1: {
+                    amount: 1,
+                },
+            },
+            server: {
+                host: 'mysite.com',
+            },
+            stripe: {
+                currency: 'usd',
+                publishableKey: 'just_a_fake_key',
+            },
+        })
+    })
+
 })
