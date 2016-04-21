@@ -29,7 +29,7 @@ Take a minute to go try [the live demo](https://christophercliff.com/flatmarket/
 ## Design goals
 
 - [x] It should cost next-to-nothing to operate.
-- [x] It should should be reliable and scalable. This is achieved by offloading expensive and complicated operations to third-party services.
+- [x] It should be reliable and scalable. This is achieved by offloading expensive and complicated operations to third-party services.
 - [x] It should be secure.
 - [x] It should be easy to customize, update, and deploy.
 
