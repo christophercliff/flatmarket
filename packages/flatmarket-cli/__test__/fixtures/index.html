@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>test</title>
+        <link href="/app.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div id="root"><div class="container"><meta name="viewport" content="width=device-width, initial-scale=1"/><div><header><h1>test</h1></header><main><section><div class="action"><div class="aligner"><div class="name"></div><div class="description"></div></div></div><div class="price">$1.23</div><div class="status status-checkout"><i class="material-icons">shopping_cart</i></div><div class="status status-success"><i class="material-icons">check_circle</i></div><div class="status status-error"><i class="material-icons">error</i></div></section></main><footer><p><a href="https://github.com/christophercliff/flatmarket">Get Flatmarket</a></p></footer></div></div></div>
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <script src="/app.js"></script>
+        <script>app.init({"info":{"name":"test"},"products":{"001":{"amount":123}},"server":{"host":"foo.com"},"stripe":{"publishableKey":"just_a_fake_key"}}, document.getElementById('root'))</script>
+    </body>
+</html>

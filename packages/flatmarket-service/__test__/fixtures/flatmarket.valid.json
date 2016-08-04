@@ -1,0 +1,24 @@
+{
+  "info": {
+    "name": "test"
+  },
+  "products": {
+    "001": {
+      "amount": 123
+    },
+    "002": {
+      "amount": 222,
+      "plan": "my_test_plan"
+    },
+    "003": {
+      "amount": 333,
+      "currency": "eur"
+    }
+  },
+  "server": {
+    "host": "foo.com"
+  },
+  "stripe": {
+    "publishableKey": "just_a_fake_key"
+  }
+}

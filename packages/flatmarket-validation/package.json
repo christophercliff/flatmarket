@@ -1,0 +1,15 @@
+{
+  "name": "flatmarket-validation",
+  "description": "Validations for Flatmarket.",
+  "version": "2.1.2",
+  "engines": {
+    "node": "4.x",
+    "npm": "2.x"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/christophercliff/flatmarket/tree/master/packages/flatmarket-validation",
+  "main": "./lib/",
+  "dependencies": {
+    "joi": "^6.5.0"
+  }
+}

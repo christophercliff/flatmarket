@@ -1,9 +1,45 @@
+machine:
+  node:
+    version: 4.2.3
+dependencies:
+  pre:
+    - npm install --loglevel error
+    - make reset
 test:
   override:
-    - npm run style
-    - nvm use 4 && npm run test-lib
-    - nvm use 0.10 && npm run test-lib
-    - npm run test-ui
+    - make style-cli:
+        parallel: true
+    - make style-client:
+        parallel: true
+    - make style-hapi:
+        parallel: true
+    - make style-schema:
+        parallel: true
+    - make style-server:
+        parallel: true
+    - make style-service:
+        parallel: true
+    - make style-theme-bananas:
+        parallel: true
+    - make style-ui:
+        parallel: true
+    - make style-validation:
+        parallel: true
+    - make coverage-cli:
+        parallel: true
+    - make coverage-client:
+        parallel: true
+    - make coverage-hapi:
+        parallel: true
+    - make coverage-schema:
+        parallel: true
+    - make coverage-server:
+        parallel: true
+    - make coverage-service:
+        parallel: true
+    - make coverage-theme-bananas:
+        parallel: true
+    - make coverage-ui:
+        parallel: true
   post:
-    - npm run coverage-ui
-    - ./node_modules/.bin/codecov --file=./coverage/json/coverage-final.json
+    - ./node_modules/.bin/codecov

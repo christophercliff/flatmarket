@@ -1,71 +1,31 @@
 {
+  "private": true,
   "name": "flatmarket",
   "description": "A free, open source e-commerce platform for static websites.",
   "version": "2.1.2",
   "engines": {
-    "node": "0.10.x || 4.x"
+    "node": "4.x",
+    "npm": "2.x"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/christophercliff/flatmarket"
-  },
-  "main": "./lib/",
-  "bin": {
-    "flatmarket": "./bin/flatmarket"
-  },
-  "scripts": {
-    "coverage-lib": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha ./test/lib.spec.js",
-    "coverage-ui": "./node_modules/.bin/karma start ./karma.config.js --mode coverage",
-    "doc": "dot ./architecture.dot -Tpng > ./architecture.png",
-    "style": "./node_modules/crispy/node_modules/.bin/eslint -c ./node_modules/crispy/.eslintrc --ext '.js,.jsx' ./ --ignore-pattern '**/+(coverage|fixtures|node_modules)/**'",
-    "test-lib": "./node_modules/.bin/mocha ./test/lib.spec.js --reporter spec --grep ''",
-    "test-ui": "./node_modules/.bin/karma start ./karma.config.js",
-    "test-ui-dev": "./node_modules/.bin/karma start ./karma.config.js --mode dev"
-  },
-  "dependencies": {
+  "devDependencies": {
     "babel-core": "^6.1.4",
     "babel-plugin-transform-react-jsx": "^6.1.4",
     "bluebird": "^2.10.2",
-    "classnames": "^2.1.3",
+    "chai": "^3.1.0",
+    "codecov": "^1.0.1",
     "commander": "^2.8.1",
+    "crispy": "^5.0.1",
     "css-loader": "^0.15.6",
     "expose-loader": "^0.7.0",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.4",
-    "flatmarket-client": "^1.1.0",
-    "flatmarket-schema": "^1.1.0",
-    "flatmarket-server": "^1.1.0",
-    "fs-extra": "^0.22.1",
-    "hapi": "^8.8.0",
     "immutable": "^3.7.5",
+    "istanbul": "^0.3.13",
+    "istanbul-instrumenter-loader": "^0.1.2",
     "joi": "^6.6.0",
     "json-loader": "^0.5.2",
     "jsx-loader": "^0.13.2",
-    "less": "^2.5.1",
-    "less-loader": "^2.2.0",
-    "lodash": "^3.10.1",
-    "node-libs-browser": "^0.5.2",
-    "react": "^0.14.2",
-    "react-addons-css-transition-group": "^0.14.7",
-    "react-addons-test-utils": "^0.14.2",
-    "react-dom": "^0.14.2",
-    "react-redux": "^4.0.0",
-    "redux": "^3.0.4",
-    "redux-logger": "^2.0.4",
-    "redux-thunk": "^1.0.0",
-    "style-loader": "^0.12.3",
-    "url-loader": "^0.5.6",
-    "watchpack": "^0.2.8",
-    "webpack": "^1.11.0",
-    "webpack-dev-server": "^1.10.1"
-  },
-  "devDependencies": {
-    "chai": "^3.1.0",
-    "codecov": "^1.0.1",
-    "crispy": "^5.0.1",
-    "istanbul": "^0.3.13",
-    "istanbul-instrumenter-loader": "^0.1.2",
     "karma": "^0.13.9",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.7",
@@ -74,8 +34,17 @@
     "karma-sinon": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.4",
     "karma-webpack": "^1.7.0",
+    "lerna": "2.0.0-beta.24",
+    "less-loader": "^2.2.0",
     "mocha": "^2.2.5",
+    "mock-require": "^1.3.0",
+    "nock": "^2.7.0",
+    "react": "^0.14.2",
+    "react-addons-test-utils": "^0.14.2",
+    "react-dom": "^0.14.2",
     "sinon": "^1.15.4",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "style-loader": "^0.12.3",
+    "url-loader": "^0.5.6"
   }
 }
