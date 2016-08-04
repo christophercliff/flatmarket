@@ -1,37 +1,18 @@
-# flatmarket
+<p align="center">
+  <img alt="Lerna" src="https://raw.githubusercontent.com/christophercliff/flatmarket/master/packages/flatmarket-example/src/images/pineapple.png" width="360" />
+</p>
 
-[![Build Status](https://circleci.com/gh/christophercliff/flatmarket.svg?style=shield)](https://circleci.com/gh/christophercliff/flatmarket) [![codecov.io](http://codecov.io/github/christophercliff/flatmarket/coverage.svg?branch=master)](http://codecov.io/github/christophercliff/flatmarket?branch=master)
+<h1 align="center">Flatmarket</h1>
+
+<p align="center">
+    <a href="https://circleci.com/gh/christophercliff/flatmarket"><img src="https://camo.githubusercontent.com/5843fae6a2c92bed031acbc78027a2b0d5f0061c/68747470733a2f2f636972636c6563692e636f6d2f67682f6368726973746f70686572636c6966662f666c61746d61726b65742e7376673f7374796c653d736869656c64" alt="Build Status" data-canonical-src="https://circleci.com/gh/christophercliff/flatmarket.svg?style=shield" style="max-width:100%;"></a> <a href="http://codecov.io/github/christophercliff/flatmarket?branch=master"><img src="https://camo.githubusercontent.com/ea3c9df6a64408856944933ba4a73f3ea680e47b/687474703a2f2f636f6465636f762e696f2f6769746875622f6368726973746f70686572636c6966662f666c61746d61726b65742f636f7665726167652e7376673f6272616e63683d6d6173746572" alt="codecov.io" data-canonical-src="http://codecov.io/github/christophercliff/flatmarket/coverage.svg?branch=master" style="max-width:100%;"></a>
+</p>
 
 Flatmarket is a free, open source e-commerce platform for static websites. It is reliable, secure, and inexpensive to operate.
 
-The platform uses [Stripe](https://stripe.com/) for payment processing and is built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/).
+The platform uses [Stripe](https://stripe.com/) for payment processing and is built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/). It comes with integrations for several cloud platforms including [AWS Lambda](https://aws.amazon.com/lambda/) and [Heroku](https://www.heroku.com/).
 
-At its core is a batteries-included CLI to help you get started quickly. Modules are also packaged individually so you can customize your rig.
-
-## How it works
-
-The Flatmarket architecture consists of a static website paired with a [proxy server](https://github.com/christophercliff/flatmarket-server) for sending payments to Stripe. The browser and server share a public schema ([represented by a JSON document](https://github.com/christophercliff/flatmarket-schema)) to prevent charge tampering. The store operator can manage inventory and store configuration by updating the schema document.
-
-### Architecture
-
-![Architecture Diagram](architecture.png)
-
-1. The web browser loads the single-page app from the static file server (e.g. AWS S3).
-2. The user submits their credit card information with Stripe Checkout and the web browser obtains a new Stripe token.
-3. The web browser sends the token and product ID the Flatmarket server.
-4. The Flatmarket server pulls the product information from `flatmarket.json` hosted on the static file server.
-5. The Flatmarket server sends the charge to Stripe.
-
-## Live Demo
-
-Take a minute to go try [the live demo](https://christophercliff.com/flatmarket/). Charges can be submitted using credit card number `4242 4242 4242 4242`. A test charge will be created in Stripe, so you should avoid submitting personal information.
-
-## Design goals
-
-- [x] It should cost next-to-nothing to operate.
-- [x] It should be reliable and scalable. This is achieved by offloading expensive and complicated operations to third-party services.
-- [x] It should be secure.
-- [x] It should be easy to customize, update, and deploy.
+At its core is a batteries-included CLI to help you get started quickly. Modules are also [packaged individually](/christophercliff/flatmarket/packages) so you can customize your rig.
 
 ## Features
 
@@ -42,57 +23,106 @@ Take a minute to go try [the live demo](https://christophercliff.com/flatmarket/
 - Manual [charge authorization](https://support.stripe.com/questions/does-stripe-support-authorize-and-capture)
 - Bitcoin
 - Mobile-ready
-- [and more...](https://github.com/christophercliff/flatmarket-schema/blob/master/SPECIFICATION.md)
 
-## Use cases
+## Demo
 
-Flatmarket isn't appropriate for every e-commerce project, but it is uniquely suited for the following situations:
+:point_right: [christophercliff.com/flatmarket/](https://christophercliff.com/flatmarket/)
 
-- high traffic but low sales volume.
-- high touch, where every transaction requires human involvement.
-- sale of digital goods, made-to-order goods, or donations (where stock keeping is not required).
-- any situation where low cost is a priority.
+You can complete checkout using credit card number `4242 4242 4242 4242`. A test charge will be created in Stripe, so do not submit personal information.
 
-## Installation
+## How it works
+
+Flatmarket is a static website generator paired with a proxy server for sending payments to Stripe. The static website content is generated from a public schema document. The proxy server reads from that schema document during checkout to prevent charge tampering. Once the proxy server is deployed, all content and configuration updates are made via the static website.
+
+### Creating a charge
+
+![architecture](https://cloud.githubusercontent.com/assets/317601/13714569/ff27bb1e-e794-11e5-9861-c04a94f56d35.png)
+
+1. The Web Browser loads the static website from the Static Web Server.
+2. The Web Browser submits a charge to Stripe via [Stripe Checkout](https://stripe.com/checkout) and obtains a token.
+3. The Web Browser submits the token and product ID to the Flatmarket Service.
+4. The Flatmarket Service loads the schema document from the Static Web Server.
+5. The Flatmarket Service reads the product information from the schema document and submits the charge to Stripe.
+
+## Documentation
+
+- [Installation](#installation)
+- [Creating the Schema](#creating-the-schema)
+- [Running Locally](#running-locally)
+- [Deploying the Static Website](#deploying-the-static-website)
+- [Deploying the Proxy Server](#deploying-the-proxy-server)
+
+### Installation
+
+Install [the CLI](/christophercliff/flatmarket/tree/master/packages/flatmarket-cli) and [Bananas theme](/christophercliff/flatmarket/tree/master/packages/flatmarket-theme-bananas):
 
 ```sh
-$ npm install flatmarket
+npm install flatmarket-cli flatmarket-theme-bananas
 ```
 
-## Get Started
+### Creating the Schema
+
+The schema is a JSON document that conforms to the [flatmarket-schema spec](/christophercliff/flatmarket/tree/master/packages/flatmarket-schema). It contains information about individual products (e.g. description, price, images), Stripe configuration (e.g. currency, addresses) and any other data necessary to render the static website. It looks [like this](/christophercliff/flatmarket/tree/master/packages/flatmarket-example/blob/master/src/flatmarket.json). By convention, this document should be located at `src/flatmarket.json`.
+
+### Running Locally
+
+The Flatmarket CLI comes with a local development server so you can preview your website and create charges with your Stripe test keys. The following command will build your webiste and start a development server at [https://127.0.0.1:8000/](https://127.0.0.1:8000/) (note the ***https***).
 
 ```sh
-$ flatmarket src/flatmarket.json --component your-theme.jsx
+./node_modules/.bin/flatmarket ./src/flatmarket.json \
+    --component ./node_modules/flatmarket-theme-bananas/index.jsx \
+    --stripe-secret-key YOUR_TEST_SECRET_KEY \
+    --dev
 ```
 
-Visit the [example repo](https://github.com/christophercliff/flatmarket-example) for a working example and read the [API Reference](https://github.com/christophercliff/flatmarket/blob/master/REFERENCE.md) for a complete list of options.
+An [example project](/christophercliff/flatmarket/tree/master/packages/flatmarket-example) is included to help you get started.
 
-## Platform
+### Deploying the Static Website
 
-- [flatmarket-client](https://github.com/christophercliff/flatmarket-client) A browser client for Flatmarket.
-- [flatmarket-example](https://github.com/christophercliff/flatmarket-example) A complete example of a Flatmarket.
-- [flatmarket-schema](https://github.com/christophercliff/flatmarket-schema) A JSON schema utility for Flatmarket.
-- [flatmarket-server](https://github.com/christophercliff/flatmarket-server) A standalone web server for Flatmarket.
-- [flatmarket-server-heroku](https://github.com/christophercliff/flatmarket-server-heroku) A Flatmarket server for [Heroku](https://www.heroku.com/).
-- [hapi-flatmarket](https://github.com/christophercliff/hapi-flatmarket) A hapi plugin for Flatmarket.
-- [hapi-stripe-webhooks](https://github.com/christophercliff/hapi-stripe-webhooks) Listen for notifications from Stripe.
+When you're finished with development, generate the static website and upload the files to your preferred web server.
+
+```sh
+./node_modules/.bin/flatmarket ./src/flatmarket.json \
+    --component ./node_modules/flatmarket-theme-bananas/index.jsx
+```
+
+### Deploying the Proxy Server
+
+Flatmarket comes with server integrations for the following platforms:
+
+- [Heroku](/christophercliff/flatmarket-server-heroku)
+- AWS Lambda & API Gateway (not yet)
+- [node.js](/christophercliff/flatmarket/tree/master/packages/flatmarket-server)
+- [hapi](/christophercliff/flatmarket/tree/master/packages/flatmarket-hapi)
+
+Each platform exposes the API endpoint that your static website will use to create charges. The server environment requires access to both your Stripe secret key and the public URI for the schema document.
 
 ## Themes
 
-- [Bananas](https://github.com/christophercliff/flatmarket-theme-bananas)
+- [Bananas](/christophercliff/flatmarket/tree/master/packages/flatmarket-theme-bananas)
 
-## Reference
+## Developers
 
-See [REFERENCE](https://github.com/christophercliff/flatmarket/blob/master/REFERENCE.md).
+Get the code:
 
-## Customization
+```sh
+git clone git@github.com:christophercliff/flatmarket.git && cd ./flatmarket/
+npm install
+make reset
+```
 
-See [CUSTOMIZATION](https://github.com/christophercliff/flatmarket/blob/master/CUSTOMIZATION.md).
+Run tests:
 
-## Contributing
+```
+make test
+```
 
-See [CONTRIBUTING](https://github.com/christophercliff/flatmarket/blob/master/CONTRIBUTING.md).
+Run the example package on a local dev server:
+
+```
+make example-dev
+```
 
 ## License
 
-See [LICENSE](https://github.com/christophercliff/flatmarket/blob/master/LICENSE.md).
+See [LICENSE](/christophercliff/flatmarket/blob/master/LICENSE.md).

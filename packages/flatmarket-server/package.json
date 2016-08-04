@@ -1,0 +1,18 @@
+{
+  "name": "flatmarket-server",
+  "description": "A standalone web server for Flatmarket.",
+  "version": "1.1.1",
+  "engines": {
+    "node": "4.x",
+    "npm": "2.x"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/christophercliff/flatmarket/tree/master/packages/flatmarket-server",
+  "main": "./lib/",
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "hapi": "^8.8.0",
+    "hapi-flatmarket": "^1.1.0",
+    "joi": "^6.5.0"
+  }
+}

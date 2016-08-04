@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "flatmarket-example",
+  "description": "An example Flatmarket website.",
+  "version": "2.1.2",
+  "engines": {
+    "node": "4.x",
+    "npm": "2.x"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/christophercliff/flatmarket/tree/master/packages/flatmarket-example",
+  "dependencies": {
+    "flatmarket": "^2.1.1",
+    "flatmarket-theme-bananas": "^1.0.0"
+  }
+}

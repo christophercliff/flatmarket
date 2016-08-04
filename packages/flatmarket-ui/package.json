@@ -1,0 +1,26 @@
+{
+  "name": "flatmarket-ui",
+  "description": "The Redux implementation for Flatmarket.",
+  "version": "2.1.2",
+  "engines": {
+    "node": "4.x",
+    "npm": "2.x"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/christophercliff/flatmarket/tree/master/packages/flatmarket-ui",
+  "main": "./lib/",
+  "dependencies": {
+    "bluebird": "^2.10.2",
+    "crispy-redux": "^1.0.0",
+    "flatmarket-client": "^1.1.0",
+    "flatmarket-schema": "^1.1.2",
+    "immutable": "^3.7.5",
+    "lodash": "^3.10.1",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.4",
+    "redux-logger": "^2.0.4",
+    "redux-thunk": "^1.0.0"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "flatmarket-service",
+  "description": "The core Flatmarket service.",
+  "version": "1.1.0",
+  "engines": {
+    "node": "4.x",
+    "npm": "2.x"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/christophercliff/flatmarket/tree/master/packages/flatmarket-service",
+  "main": "./lib/",
+  "dependencies": {
+    "bluebird": "^2.9.30",
+    "boom": "^2.8.0",
+    "flatmarket-schema": "^1.1.2",
+    "joi": "^6.5.0",
+    "lodash": "^3.10.0",
+    "stripe": "^3.6.0",
+    "wreck": "^6.0.0"
+  }
+}

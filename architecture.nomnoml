@@ -1,0 +1,24 @@
+[Static Web Server | e.g. AWS S3, GitHub Pages]
+[Flatmarket Service | e.g. AWS Lambda & API Gateway, Heroku]
+[Stripe]
+[Web Browser]
+[<abstract>1
+    | GET https://your-app/index.html
+    | GET https://your-app/app.js
+    | GET https://your-app/app.css
+]
+[<abstract>2 | POST https://api.stripe.com/v1/tokens]
+[<abstract>3 | POST https://your-app.herokuapp.com/]
+[<abstract>4 | GET https://your-app/flatmarket.json]
+[<abstract>5 | POST https://api.stripe.com/v1/charges]
+
+[Static Web Server] - [1]
+    [1] -> [Web Browser]
+[Web Browser] - [2]
+    [2] -> [Stripe]
+[Web Browser] - [3]
+    [3] -> [Flatmarket Service]
+[Static Web Server] - [4]
+    [4] -> [Flatmarket Service]
+[Flatmarket Service] - [5]
+    [5] -> [Stripe]

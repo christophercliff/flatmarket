@@ -1,0 +1,11 @@
+{
+  "name": "flatmarket",
+  "description": "A free, open source e-commerce platform for static websites.",
+  "version": "2.1.2",
+  "engines": {
+    "node": "4.x",
+    "npm": "2.x"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/christophercliff/flatmarket/tree/master/packages/flatmarket"
+}
