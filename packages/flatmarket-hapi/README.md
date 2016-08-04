@@ -27,7 +27,7 @@ server.register({
 
 - **`schemaUri`** `String`
 
-    The URI for the [flatmarket schema](/christophercliff/flatmarket/tree/master/packages/flatmarket-schema). Required.
+    The URI for the [flatmarket schema](packages/flatmarket-schema). Required.
 
 - **`stripeSecretKey`** `String`
 
@@ -35,4 +35,4 @@ server.register({
 
 ## License
 
-See [LICENSE](/christophercliff/flatmarket/blob/master/LICENSE.md).
+See [LICENSE](LICENSE.md).

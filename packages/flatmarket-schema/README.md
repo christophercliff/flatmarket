@@ -114,4 +114,4 @@ zipCode | `Boolean` |
 
 ## License
 
-See [LICENSE](/christophercliff/flatmarket/blob/master/LICENSE.md).
+See [LICENSE](LICENSE.md).

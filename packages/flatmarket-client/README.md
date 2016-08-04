@@ -66,7 +66,7 @@ client.createCharge(options)
 
 - **`sku`** `String`
 
-    The SKU. Should correspond to a key in the [Products Object](/christophercliff/flatmarket/tree/master/packages/flatmarket-schema#products-object). *Required*.
+    The SKU. Should correspond to a key in the [Products Object](packages/flatmarket-schema#products-object). *Required*.
 
 - **`token`** `String`
 
@@ -74,4 +74,4 @@ client.createCharge(options)
 
 ## License
 
-See [LICENSE](/christophercliff/flatmarket/blob/master/LICENSE.md).
+See [LICENSE](LICENSE.md).

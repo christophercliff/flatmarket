@@ -27,4 +27,4 @@ node ./node_modules/flatmarket-server/lib/start
 
 ## License
 
-See [LICENSE](/christophercliff/flatmarket/blob/master/LICENSE.md).
+See [LICENSE](LICENSE.md).

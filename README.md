@@ -54,7 +54,7 @@ Flatmarket is a static website generator paired with a proxy server for sending 
 
 ### Installation
 
-Install [the CLI](/christophercliff/flatmarket/tree/master/packages/flatmarket-cli) and [Bananas theme](/christophercliff/flatmarket/tree/master/packages/flatmarket-theme-bananas):
+Install [the CLI](packages/flatmarket-cli) and [Bananas theme](packages/flatmarket-theme-bananas):
 
 ```sh
 npm install flatmarket-cli flatmarket-theme-bananas
@@ -62,7 +62,7 @@ npm install flatmarket-cli flatmarket-theme-bananas
 
 ### Creating the Schema
 
-The schema is a JSON document that conforms to the [flatmarket-schema spec](/christophercliff/flatmarket/tree/master/packages/flatmarket-schema). It contains information about individual products (e.g. description, price, images), Stripe configuration (e.g. currency, addresses) and any other data necessary to render the static website. It looks [like this](/christophercliff/flatmarket/tree/master/packages/flatmarket-example/blob/master/src/flatmarket.json). By convention, this document should be located at `src/flatmarket.json`.
+The schema is a JSON document that conforms to the [flatmarket-schema spec](packages/flatmarket-schema). It contains information about individual products (e.g. description, price, images), Stripe configuration (e.g. currency, addresses) and any other data necessary to render the static website. It looks [like this](packages/flatmarket-example/blob/master/src/flatmarket.json). By convention, this document should be located at `src/flatmarket.json`.
 
 ### Running Locally
 
@@ -75,7 +75,7 @@ The Flatmarket CLI comes with a local development server so you can preview your
     --dev
 ```
 
-An [example project](/christophercliff/flatmarket/tree/master/packages/flatmarket-example) is included to help you get started.
+An [example project](packages/flatmarket-example) is included to help you get started.
 
 ### Deploying the Static Website
 
@@ -92,14 +92,14 @@ Flatmarket comes with server integrations for the following platforms:
 
 - [Heroku](/christophercliff/flatmarket-server-heroku)
 - AWS Lambda & API Gateway (not yet)
-- [node.js](/christophercliff/flatmarket/tree/master/packages/flatmarket-server)
-- [hapi](/christophercliff/flatmarket/tree/master/packages/flatmarket-hapi)
+- [node.js](packages/flatmarket-server)
+- [hapi](packages/flatmarket-hapi)
 
 Each platform exposes the API endpoint that your static website will use to create charges. The server environment requires access to both your Stripe secret key and the public URI for the schema document.
 
 ## Themes
 
-- [Bananas](/christophercliff/flatmarket/tree/master/packages/flatmarket-theme-bananas)
+- [Bananas](packages/flatmarket-theme-bananas)
 
 ## Developers
 
@@ -125,4 +125,4 @@ make example-dev
 
 ## License
 
-See [LICENSE](/christophercliff/flatmarket/blob/master/LICENSE.md).
+See [LICENSE](LICENSE.md).

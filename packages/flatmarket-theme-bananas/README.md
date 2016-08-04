@@ -10,4 +10,4 @@ npm install flatmarket-theme-bananas
 
 ## License
 
-See [LICENSE](/christophercliff/flatmarket/blob/master/LICENSE.md).
+See [LICENSE](LICENSE.md).

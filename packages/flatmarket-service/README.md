@@ -20,8 +20,8 @@ handleRequest(payload).then(function (res) {})
 
 ##### `createHandler(stripeSecretKey: string, schemaUri: string): (payload: object) => Promise`
 
-The shape of the `payload` object is specified in [lib/validate](/christophercliff/flatmarket/tree/master/packages/flatmarket-service/blob/master/lib/validate.js).
+The shape of the `payload` object is specified in [lib/validate](packages/flatmarket-service/blob/master/lib/validate.js).
 
 ## License
 
-See [LICENSE](/christophercliff/flatmarket/blob/master/LICENSE.md).
+See [LICENSE](LICENSE.md).

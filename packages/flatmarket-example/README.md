@@ -21,8 +21,8 @@ Then start the local server in development mode:
 
 The website should be running at [https://127.0.0.1:8000/](https://127.0.0.1:8000/) (note the **`https`**).
 
-See the [API Reference](/christophercliff/flatmarket/blob/master/REFERENCE.md) for a complete list of options.
+See the [API Reference](REFERENCE.md) for a complete list of options.
 
 ## License
 
-See [LICENSE](/christophercliff/flatmarket/blob/master/LICENSE.md).
+See [LICENSE](LICENSE.md).
