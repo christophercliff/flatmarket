@@ -62,7 +62,7 @@ npm install flatmarket-cli flatmarket-theme-bananas
 
 ### Creating the Schema
 
-The schema is a JSON document that conforms to the [flatmarket-schema spec](packages/flatmarket-schema). It contains information about individual products (e.g. description, price, images), Stripe configuration (e.g. currency, addresses) and any other data necessary to render the static website. It looks [like this](packages/flatmarket-example/blob/master/src/flatmarket.json). By convention, this document should be located at `src/flatmarket.json`.
+The schema is a JSON document that conforms to the [flatmarket-schema spec](packages/flatmarket-schema). It contains information about individual products (e.g. description, price, images), Stripe configuration (e.g. currency, addresses) and any other data necessary to render the static website. It looks [like this](packages/flatmarket-example/src/flatmarket.json). By convention, this document should be located at `src/flatmarket.json`.
 
 ### Running Locally
 
@@ -90,7 +90,7 @@ When you're finished with development, generate the static website and upload th
 
 Flatmarket comes with server integrations for the following platforms:
 
-- [Heroku](/christophercliff/flatmarket-server-heroku)
+- [Heroku](https://github.com/christophercliff/flatmarket-server-heroku)
 - AWS Lambda & API Gateway (not yet)
 - [node.js](packages/flatmarket-server)
 - [hapi](packages/flatmarket-hapi)
