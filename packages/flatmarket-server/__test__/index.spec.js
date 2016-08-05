@@ -1,5 +1,10 @@
+var Bluebird = require('bluebird')
 var expect = require('chai').expect
 var startServer = require('../lib/').startServer
+
+Bluebird.onPossiblyUnhandledRejection(function (err) {
+    throw err
+})
 
 describe('the server', function () {
 
@@ -12,7 +17,6 @@ describe('the server', function () {
         startServer(options)
             .then(function (server) {
                 expect(server.lookup('flatmarket-charge')).to.have.property('path', '/')
-                expect(server.lookup('flatmarket-status')).to.have.property('path', '/')
                 return done()
             })
             .caught(done)
