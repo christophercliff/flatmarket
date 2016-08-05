@@ -35,4 +35,4 @@ server.register({
 
 ## License
 
-See [LICENSE](LICENSE.md).
+See [LICENSE](https://github.com/christophercliff/flatmarket/blob/master/LICENSE.md).

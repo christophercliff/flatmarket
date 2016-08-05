@@ -16,4 +16,4 @@ npm install flatmarket-cli
 
 ## License
 
-See [LICENSE](LICENSE.md).
+See [LICENSE](https://github.com/christophercliff/flatmarket/blob/master/LICENSE.md).
