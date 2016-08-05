@@ -8,9 +8,9 @@
     <a href="https://circleci.com/gh/christophercliff/flatmarket"><img src="https://camo.githubusercontent.com/5843fae6a2c92bed031acbc78027a2b0d5f0061c/68747470733a2f2f636972636c6563692e636f6d2f67682f6368726973746f70686572636c6966662f666c61746d61726b65742e7376673f7374796c653d736869656c64" alt="Build Status" data-canonical-src="https://circleci.com/gh/christophercliff/flatmarket.svg?style=shield" style="max-width:100%;"></a> <a href="http://codecov.io/github/christophercliff/flatmarket?branch=master"><img src="https://camo.githubusercontent.com/ea3c9df6a64408856944933ba4a73f3ea680e47b/687474703a2f2f636f6465636f762e696f2f6769746875622f6368726973746f70686572636c6966662f666c61746d61726b65742f636f7665726167652e7376673f6272616e63683d6d6173746572" alt="codecov.io" data-canonical-src="http://codecov.io/github/christophercliff/flatmarket/coverage.svg?branch=master" style="max-width:100%;"></a>
 </p>
 
-Flatmarket is a free, open source e-commerce platform for static websites. It is reliable, secure, and inexpensive to operate.
+Flatmarket is a free, open source e-commerce platform for static websites. It's reliable, secure, and inexpensive to operate.
 
-The platform uses [Stripe](https://stripe.com/) for payment processing and is built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/). It comes with integrations for several cloud platforms including [AWS Lambda](https://aws.amazon.com/lambda/) and [Heroku](https://www.heroku.com/).
+The platform uses [Stripe](https://stripe.com/) for payment processing and it's built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/). It comes with automated integrations for cloud platforms, including [AWS](https://aws.amazon.com/lambda/) and [Heroku](https://www.heroku.com/).
 
 At its core is a batteries-included CLI to help you get started quickly. Modules are also [packaged individually](packages) so you can customize your rig.
 
@@ -54,10 +54,10 @@ Flatmarket is a static website generator paired with a proxy server for sending 
 
 ### Installation
 
-Install [the CLI](packages/flatmarket-cli) and [Bananas theme](packages/flatmarket-theme-bananas):
+Install [the CLI](packages/flatmarket-cli):
 
 ```sh
-npm install flatmarket-cli flatmarket-theme-bananas
+npm install flatmarket-cli
 ```
 
 ### Creating the Schema
@@ -69,10 +69,7 @@ The schema is a JSON document that conforms to the [flatmarket-schema spec](pack
 The Flatmarket CLI comes with a local development server so you can preview your website and create charges with your Stripe test keys. The following command will build your webiste and start a development server at [https://127.0.0.1:8000/](https://127.0.0.1:8000/) (note the ***https***).
 
 ```sh
-./node_modules/.bin/flatmarket ./src/flatmarket.json \
-    --component ./node_modules/flatmarket-theme-bananas/index.jsx \
-    --stripe-secret-key YOUR_TEST_SECRET_KEY \
-    --dev
+./node_modules/.bin/flatmarket ./src/flatmarket.json --stripe-secret-key YOUR_TEST_SECRET_KEY --dev
 ```
 
 An [example project](packages/flatmarket-example) is included to help you get started.
@@ -88,14 +85,17 @@ When you're finished with development, generate the static website and upload th
 
 ### Deploying the Proxy Server
 
-Flatmarket comes with server integrations for the following platforms:
+#### Automatic
 
-- [Heroku](https://github.com/christophercliff/flatmarket-server-heroku)
-- AWS Lambda & API Gateway (not yet)
+Platform | Click to deploy
+---|---
+AWS | [![Deploy to AWS](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](#)
+Heroku | [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/christophercliff/flatmarket-server-heroku)
+
+#### Manual
+
 - [node.js](packages/flatmarket-server)
 - [hapi](packages/flatmarket-hapi)
-
-Each platform exposes the API endpoint that your static website will use to create charges. The server environment requires access to both your Stripe secret key and the public URI for the schema document.
 
 ## Themes
 
@@ -125,4 +125,4 @@ make example-dev
 
 ## License
 
-See [LICENSE](LICENSE.md).
+See [LICENSE](https://github.com/christophercliff/flatmarket/blob/master/LICENSE.md).

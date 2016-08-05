@@ -24,4 +24,4 @@ The shape of the `payload` object is specified in [lib/validate](packages/flatma
 
 ## License
 
-See [LICENSE](LICENSE.md).
+See [LICENSE](https://github.com/christophercliff/flatmarket/blob/master/LICENSE.md).
