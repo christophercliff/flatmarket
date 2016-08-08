@@ -10,7 +10,7 @@
 
 Flatmarket is a free, open source e-commerce platform for static websites. It's reliable, secure, and inexpensive to operate.
 
-The platform uses [Stripe](https://stripe.com/) for payment processing and it's built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/). It comes with automated integrations for cloud platforms, including [AWS](https://aws.amazon.com/lambda/) and [Heroku](https://www.heroku.com/).
+The platform uses [Stripe](https://stripe.com/) for payment processing and it's built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/). It can be deployed with one click to [AWS](https://aws.amazon.com/lambda/) or [Heroku](https://www.heroku.com/).
 
 At its core is a batteries-included CLI to help you get started quickly. Modules are also [packaged individually](packages) so you can customize your rig.
 
@@ -32,7 +32,7 @@ You can complete checkout using credit card number `4242 4242 4242 4242`. A test
 
 ## How it works
 
-Flatmarket is a static website generator paired with a proxy server for sending payments to Stripe. The static website content is generated from a public schema document. The proxy server reads from that schema document during checkout to prevent charge tampering. Once the proxy server is deployed, all content and configuration updates are made via the static website.
+Flatmarket is a static website generator paired with a proxy server for sending payments to Stripe. The static website content is generated from a public schema document. The proxy server reads from that document during checkout to prevent charge tampering. Once the proxy server is deployed, all content and configuration updates are made via the static website.
 
 ### Creating a charge
 
@@ -47,10 +47,11 @@ Flatmarket is a static website generator paired with a proxy server for sending 
 ## Documentation
 
 - [Installation](#installation)
-- [Creating the Schema](#creating-the-schema)
-- [Running Locally](#running-locally)
-- [Deploying the Static Website](#deploying-the-static-website)
-- [Deploying the Proxy Server](#deploying-the-proxy-server)
+- [Creating the schema](#creating-the-schema)
+- [Developing locally](#developing-locally)
+- [Building & deploying the static website](#building-deploying-the-static-website)
+- [Deploying the proxy server](#deploying-the-proxy-server)
+- [Using themes](#using-themes)
 
 ### Installation
 
@@ -60,53 +61,72 @@ Install [the CLI](packages/flatmarket-cli):
 npm install flatmarket-cli
 ```
 
-### Creating the Schema
+### Creating the schema
 
-The schema is a JSON document that conforms to the [flatmarket-schema spec](packages/flatmarket-schema). It contains information about individual products (e.g. description, price, images), Stripe configuration (e.g. currency, addresses) and any other data necessary to render the static website. It looks [like this](packages/flatmarket-example/src/flatmarket.json). By convention, this document should be located at `src/flatmarket.json`.
+The schema is a JSON document that conforms to the [flatmarket-schema spec](packages/flatmarket-schema). It contains information about individual products (e.g. description, price, images), Stripe configuration (e.g. currency, addresses) and any other data needed to render the static website. It looks [like this](packages/flatmarket-example/src/flatmarket.json). By convention, this document should be located at `src/flatmarket.json`.
 
-### Running Locally
+### Developing locally
 
-The Flatmarket CLI comes with a local development server so you can preview your website and create charges with your Stripe test keys. The following command will build your webiste and start a development server at [https://127.0.0.1:8000/](https://127.0.0.1:8000/) (note the ***https***).
+The Flatmarket CLI comes with a local development server so you can preview your website and create charges with your Stripe test keys. The following command will build your website and start a development server at [https://127.0.0.1:8000/](https://127.0.0.1:8000/) (note the ***https***).
 
 ```sh
-./node_modules/.bin/flatmarket ./src/flatmarket.json --stripe-secret-key YOUR_TEST_SECRET_KEY --dev
+./node_modules/.bin/flatmarket ./src/flatmarket.json \
+    --stripe-secret-key YOUR_TEST_SECRET_KEY \
+    --dev
 ```
 
 An [example project](packages/flatmarket-example) is included to help you get started.
 
-### Deploying the Static Website
+### Building & deploying the static website
 
 When you're finished with development, generate the static website and upload the files to your preferred web server.
 
 ```sh
-./node_modules/.bin/flatmarket ./src/flatmarket.json \
-    --component ./node_modules/flatmarket-theme-bananas/index.jsx
+./node_modules/.bin/flatmarket ./src/flatmarket.json
 ```
 
-### Deploying the Proxy Server
+### Deploying the proxy server
 
-#### Automatic
+#### Automated deployments
 
-Platform | Click to deploy
----|---
-AWS | [![Deploy to AWS](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](#)
-Heroku | [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/christophercliff/flatmarket-server-heroku)
+Platform | Click to deploy | &nbsp;
+---|---|---
+AWS | [![Deploy to AWS](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](#) | (coming soon)
+Heroku | [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/christophercliff/flatmarket-server-heroku) | &nbsp;
 
-#### Manual
+#### Manual deployments
 
-- [node.js](packages/flatmarket-server)
+- [service](packages/flatmarket-service)
+- [server](packages/flatmarket-server)
 - [hapi](packages/flatmarket-hapi)
 
-## Themes
+### Using themes
+
+A theme is a [container component](http://redux.js.org/docs/basics/UsageWithReact.html#presentational-and-container-components) that gets bound to the Redux store implemented by [flatmarket-ui](packages/flatmarket-ui).
+
+Themes are defined by a single React component but can contain multiple child components, CSS, fonts, and images. Flatmarket uses [Webpack loaders](https://webpack.github.io/docs/using-loaders.html) to import non-JavaScript file types. The following loaders are supported by default:
+
+- [json-loader](https://www.npmjs.com/package/json-loader)
+- [jsx-loader](https://www.npmjs.com/package/jsx-loader)
+- [less-loader](https://www.npmjs.com/package/less-loader)
+- [url-loader](https://www.npmjs.com/package/url-loader)
+
+To use a theme, run:
+
+```sh
+./node_modules/.bin/flatmarket ./src/flatmarket.json \
+    --component ./path/to/your-theme.jsx
+```
+
+#### Included Themes
 
 - [Bananas](packages/flatmarket-theme-bananas)
 
 ## Developers
 
-Get the code:
+Install dependencies:
 
 ```sh
-git clone git@github.com:christophercliff/flatmarket.git && cd ./flatmarket/
 npm install
 make reset
 ```
@@ -117,7 +137,7 @@ Run tests:
 make test
 ```
 
-Run the example package on a local dev server:
+Run the example locally:
 
 ```
 make example-dev

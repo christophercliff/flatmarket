@@ -1,6 +1,6 @@
 # flatmarket-cli
 
-A CLI for [Flatmarket](/christophercliff/flatmarket).
+A CLI for [Flatmarket](https://github.com/christophercliff/flatmarket).
 
 ## Installation
 

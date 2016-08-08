@@ -1,6 +1,6 @@
 # flatmarket-validation
 
-Validations for [Flatmarket](/christophercliff/flatmarket).
+Validations for [Flatmarket](https://github.com/christophercliff/flatmarket).
 
 ## Installation
 

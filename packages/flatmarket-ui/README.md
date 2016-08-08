@@ -1,6 +1,6 @@
 # flatmarket-ui
 
-The Redux implementation for [Flatmarket](/christophercliff/flatmarket).
+The Redux implementation for [Flatmarket](https://github.com/christophercliff/flatmarket).
 
 ## Installation
 

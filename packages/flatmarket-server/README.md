@@ -1,6 +1,6 @@
 # flatmarket-server
 
-A standalone web server for [Flatmarket](/christophercliff/flatmarket).
+A standalone web server for [Flatmarket](https://github.com/christophercliff/flatmarket).
 
 ## Installation
 

@@ -1,6 +1,6 @@
 # flatmarket-example
 
-An example [Flatmarket](/christophercliff/flatmarket) website.
+An example [Flatmarket](https://github.com/christophercliff/flatmarket) website.
 
 ## Usage
 
@@ -10,15 +10,13 @@ Clone this repo and install dependencies:
 npm install
 ```
 
-Then start the local server in development mode:
+Then start the local development server:
 
 ```sh
-./node_modules/.bin/flatmarket --stripe-secret-key YOUR_TEST_SECRET_KEY --dev
+./node_modules/.bin/flatmarket \
+    --stripe-secret-key YOUR_TEST_SECRET_KEY \
+    --dev
 ```
-
-The website should be running at [https://127.0.0.1:8000/](https://127.0.0.1:8000/) (note the **`https`**).
-
-See the [API Reference](REFERENCE.md) for a complete list of options.
 
 ## License
 

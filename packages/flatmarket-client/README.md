@@ -1,6 +1,6 @@
 # flatmarket-client
 
-A browser client for [Flatmarket](/christophercliff/flatmarket).
+A browser client for [Flatmarket](https://github.com/christophercliff/flatmarket).
 
 ## Installation
 

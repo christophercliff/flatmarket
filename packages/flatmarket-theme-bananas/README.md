@@ -1,6 +1,6 @@
 # flatmarket-theme-bananas
 
-The default [Flatmarket](/christophercliff/flatmarket) theme.
+The default [Flatmarket](https://github.com/christophercliff/flatmarket) theme.
 
 ## Installation
 
