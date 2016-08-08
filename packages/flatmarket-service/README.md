@@ -1,6 +1,6 @@
 # flatmarket-service
 
-The core [Flatmarket](/christophercliff/flatmarket) service.
+The core [Flatmarket](https://github.com/christophercliff/flatmarket) service.
 
 ## Installation
 
@@ -20,7 +20,7 @@ handleRequest(payload).then(function (res) {})
 
 ##### `createHandler(stripeSecretKey: string, schemaUri: string): (payload: object) => Promise`
 
-The shape of the `payload` object is specified in [lib/validate](packages/flatmarket-service/blob/master/lib/validate.js).
+The shape of the `payload` object is specified in [lib/validate](https://github.com/christophercliff/flatmarket/blob/master/packages/flatmarket-validation/lib/index.js).
 
 ## License
 

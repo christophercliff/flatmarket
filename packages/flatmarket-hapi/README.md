@@ -1,6 +1,6 @@
 # hapi-flatmarket
 
-A [hapi](http://hapijs.com/) plugin for [Flatmarket](/christophercliff/flatmarket).
+A [hapi](http://hapijs.com/) plugin for [Flatmarket](https://github.com/christophercliff/flatmarket).
 
 ## Installation
 
@@ -27,7 +27,7 @@ server.register({
 
 - **`schemaUri`** `String`
 
-    The URI for the [flatmarket schema](packages/flatmarket-schema). Required.
+    The URI for the [flatmarket schema](https://github.com/christophercliff/flatmarket/tree/master/packages/flatmarket-schema). Required.
 
 - **`stripeSecretKey`** `String`
 

@@ -1,6 +1,6 @@
 # flatmarket-schema
 
-A JSON schema utility for [Flatmarket](/christophercliff/flatmarket).
+A JSON schema utility for [Flatmarket](https://github.com/christophercliff/flatmarket).
 
 ## Installation
 
