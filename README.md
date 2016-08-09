@@ -8,9 +8,9 @@
     <a href="https://circleci.com/gh/christophercliff/flatmarket"><img src="https://camo.githubusercontent.com/5843fae6a2c92bed031acbc78027a2b0d5f0061c/68747470733a2f2f636972636c6563692e636f6d2f67682f6368726973746f70686572636c6966662f666c61746d61726b65742e7376673f7374796c653d736869656c64" alt="Build Status" data-canonical-src="https://circleci.com/gh/christophercliff/flatmarket.svg?style=shield" style="max-width:100%;"></a> <a href="http://codecov.io/github/christophercliff/flatmarket?branch=master"><img src="https://camo.githubusercontent.com/ea3c9df6a64408856944933ba4a73f3ea680e47b/687474703a2f2f636f6465636f762e696f2f6769746875622f6368726973746f70686572636c6966662f666c61746d61726b65742f636f7665726167652e7376673f6272616e63683d6d6173746572" alt="codecov.io" data-canonical-src="http://codecov.io/github/christophercliff/flatmarket/coverage.svg?branch=master" style="max-width:100%;"></a>
 </p>
 
-Flatmarket is a free, open source e-commerce platform for static websites. It's reliable, secure, and inexpensive to operate.
+Flatmarket is a free, open source e-commerce platform for static websites. It offers the performance, reliability, and simplicity of a static website combined with secure and scalable payment processing.
 
-The platform uses [Stripe](https://stripe.com/) for payment processing and it's built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/). It can be deployed with one click to [AWS](https://aws.amazon.com/lambda/) or [Heroku](https://www.heroku.com/).
+The platform uses [Stripe](https://stripe.com/) for payments and it's built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/). It can be deployed with one click to [AWS](https://aws.amazon.com/lambda/) or [Heroku](https://www.heroku.com/).
 
 At its core is a batteries-included CLI to help you get started quickly. Modules are also [packaged individually](packages) so you can customize your rig.
 
@@ -38,11 +38,11 @@ Flatmarket is a static website generator paired with a proxy server for sending 
 
 ![architecture](https://cloud.githubusercontent.com/assets/317601/13714569/ff27bb1e-e794-11e5-9861-c04a94f56d35.png)
 
-1. The Web Browser loads the static website from the Static Web Server.
-2. The Web Browser submits a charge to Stripe via [Stripe Checkout](https://stripe.com/checkout) and obtains a token.
-3. The Web Browser submits the token and product ID to the Flatmarket Service.
-4. The Flatmarket Service loads the schema document from the Static Web Server.
-5. The Flatmarket Service reads the product information from the schema document and submits the charge to Stripe.
+1. The web browser loads the static website from the static web server.
+2. The web browser obtains a token from Stripe via [Stripe Checkout](https://stripe.com/checkout).
+3. The web browser submits the token and product ID to the Flatmarket service.
+4. The Flatmarket service reads the product price from the schema document on the static web server.
+5. The Flatmarket service submits the charge to Stripe.
 
 ## Documentation
 
