@@ -10,6 +10,6 @@
   "repository": "https://github.com/christophercliff/flatmarket/tree/master/packages/flatmarket-validation",
   "main": "./lib/",
   "dependencies": {
-    "joi": "^6.5.0"
+    "is-my-json-valid": "^2.13.1"
   }
 }

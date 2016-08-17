@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "email": {
+      "format": "email",
+      "type": "string"
+    },
+    "sku": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "token": {
+      "pattern": "^tok_.+",
+      "type": "string"
+    }
+  },
+  "required": [
+    "email",
+    "sku",
+    "token"
+  ],
+  "title": "createCharge",
+  "type": "object"
+}
