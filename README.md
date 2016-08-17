@@ -10,12 +10,13 @@
 
 Flatmarket is a free, open source e-commerce platform for static websites. It offers the performance, reliability, and simplicity of a static website combined with secure and scalable payment processing.
 
-The platform uses [Stripe](https://stripe.com/) for payments and it's built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/). It can be deployed with one click to [AWS](https://aws.amazon.com/lambda/) or [Heroku](https://www.heroku.com/).
+The platform uses [Stripe](https://stripe.com/) for payment processing and it's built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/). It comes with [one-click installers](#automated-deployments) for [AWS](https://aws.amazon.com/lambda/) and [Heroku](https://www.heroku.com/).
 
-At its core is a batteries-included CLI to help you get started quickly. Modules are also [packaged individually](packages) so you can customize your rig.
+At its core is a batteries-included CLI to help you [get started quickly](#documentation) Modules are also [packaged individually](packages) so you can customize your rig.
 
 ## Features
 
+- Automated deployment for AWS or Heroku
 - Customizable React UI (or use whatever frontend you prefer)
 - Separate billing and shipping addresses
 - Subscription billing
@@ -23,6 +24,7 @@ At its core is a batteries-included CLI to help you get started quickly. Modules
 - Manual [charge authorization](https://support.stripe.com/questions/does-stripe-support-authorize-and-capture)
 - Bitcoin
 - Mobile-ready
+- Email receipts
 
 ## Demo
 
@@ -79,11 +81,13 @@ An [example project](packages/flatmarket-example) is included to help you get st
 
 ### Building & deploying the static website
 
-When you're finished with development, generate the static website and upload the files to your preferred web server.
+When you're finished with development, generate a production-ready build of the static website.
 
 ```sh
 ./node_modules/.bin/flatmarket ./src/flatmarket.json
 ```
+
+Then upload the files to your preferred web server.
 
 ### Deploying the proxy server
 
@@ -91,8 +95,8 @@ When you're finished with development, generate the static website and upload th
 
 Platform | Click to deploy | &nbsp;
 ---|---|---
-AWS | [![Deploy to AWS](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](#) | (coming soon)
-Heroku | [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/christophercliff/flatmarket-server-heroku) | &nbsp;
+AWS | [![Deploy to AWS](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=region#/stacks/new?stackName=Flatmarket&templateURL=https://raw.githubusercontent.com/christophercliff/flatmarket/master/packages/flatmarket-aws/template.json) | [more info](packages/flatmarket-aws)
+Heroku | [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/christophercliff/flatmarket-server-heroku) | [more info](https://github.com/christophercliff/flatmarket-server-heroku) (deprecated)
 
 #### Manual deployments
 
