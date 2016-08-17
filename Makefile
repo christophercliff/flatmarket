@@ -1,3 +1,30 @@
+aws-stack:
+	aws cloudformation validate-template \
+	    --template-body file://packages//flatmarket-aws//template.json
+	aws cloudformation delete-stack \
+		--stack-name flatmarket
+	aws cloudformation wait stack-delete-complete \
+		--stack-name flatmarket
+	aws cloudformation create-stack \
+		--capabilities CAPABILITY_IAM \
+		--parameters ParameterKey=SchemaUri,ParameterValue=https://foo.com/schema.json \
+			ParameterKey=StripeSecretKey,ParameterValue=sk_test_foo \
+		--stack-name flatmarket \
+		--template-body file://packages//flatmarket-aws//template.json
+	aws cloudformation wait stack-create-complete \
+		--stack-name flatmarket
+	aws apigateway get-rest-apis
+	echo 'DONE!'
+
+aws-lambda:
+	cd ./packages/flatmarket-aws/; \
+		rm ./lambda.zip; \
+		zip ./lambda.zip ./lambda.js -r ./node_modules/
+
+aws-upload:
+	aws s3 cp ./packages/flatmarket-aws/lambda.zip s3://flatmarket/lambda.zip \
+		--acl public-read
+
 example-dev:
 	./packages/flatmarket-cli/bin/flatmarket ./packages/flatmarket-example/src/flatmarket.json \
 		-s ./packages/flatmarket-example/src/ \
@@ -8,6 +35,13 @@ example-dev:
 reset:
 	./node_modules/.bin/lerna clean --yes
 	./node_modules/.bin/lerna bootstrap --yes
+
+coverage-aws:
+	./node_modules/.bin/istanbul cover \
+		--root ./packages/flatmarket-aws \
+		--dir ./packages/flatmarket-aws/coverage \
+		-x **/__test__/** \
+		./node_modules/.bin/_mocha ./packages/flatmarket-aws/__test__/*.spec.js
 
 coverage-cli:
 	./node_modules/.bin/istanbul cover \
@@ -63,6 +97,7 @@ dev-ui:
 	./node_modules/.bin/karma start ./packages/flatmarket-ui/karma.config.js --mode dev
 
 style:
+	make style-aws
 	make style-cli
 	make style-client
 	make style-hapi
@@ -72,6 +107,12 @@ style:
 	make style-theme-bananas
 	make style-ui
 	make style-validation
+
+style-aws:
+	./node_modules/crispy/node_modules/.bin/eslint ./packages/flatmarket-aws/ \
+		-c ./node_modules/crispy/.eslintrc \
+		--ext '.js,.jsx' \
+		--ignore-pattern '**/+(coverage|fixtures|node_modules)/**'
 
 style-cli:
 	./node_modules/crispy/node_modules/.bin/eslint ./packages/flatmarket-cli/ \
@@ -128,6 +169,7 @@ style-validation:
 		--ignore-pattern '**/+(coverage|fixtures|node_modules)/**'
 
 test:
+	make test-aws
 	make test-cli
 	make test-client
 	make test-hapi
@@ -136,6 +178,10 @@ test:
 	make test-service
 	make test-theme-bananas
 	make test-ui
+
+test-aws:
+	./node_modules/.bin/mocha ./packages/flatmarket-aws/__test__/*.spec.js \
+		--reporter spec
 
 test-cli:
 	./node_modules/.bin/mocha ./packages/flatmarket-cli/__test__/*.spec.js \

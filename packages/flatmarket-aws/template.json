@@ -1,0 +1,231 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A Flatmarket service.",
+  "Parameters" : {
+    "CorsOrigin" : {
+      "Type" : "String",
+      "Default" : "*",
+      "Description" : "The CORS origin, e.g. `https://your-website.com`"
+    },
+    "SchemaUri" : {
+      "Type" : "String",
+      "Default" : "",
+      "Description" : "The schema URI, e.g. `https://your-website.com/flatmarket.json`"
+    },
+    "StripeSecretKey" : {
+      "Type" : "String",
+      "Default" : "",
+      "Description" : "The Stripe secret key, e.g. `sk_123abc`"
+    }
+  },
+  "Resources" : {
+    "FlatmarketLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "flatmarket",
+          "S3Key": "lambda.zip"
+        },
+        "Handler": "lambda.handler",
+        "MemorySize": 128,
+        "Role": { "Fn::GetAtt": ["FlatmarketLambdaRole", "Arn"] },
+        "Runtime": "nodejs4.3",
+        "Timeout": 3
+      },
+      "DependsOn": ["FlatmarketLambdaRole"]
+    },
+    "FlatmarketLambdaPermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:invokeFunction",
+        "FunctionName": { "Fn::GetAtt": ["FlatmarketLambdaFunction", "Arn"] },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:aws:execute-api:",
+              { "Ref": "AWS::Region" },
+              ":",
+              { "Ref": "AWS::AccountId" },
+              ":",
+              { "Ref": "FlatmarketRestApi" },
+              "/*"
+            ]
+          ]
+        }
+      }
+    },
+    "FlatmarketLambdaRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": { "Service": "lambda.amazonaws.com" },
+              "Action": ["sts:AssumeRole"]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "logs",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": ["logs:*"],
+                  "Resource": "arn:aws:logs:*:*:*"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "FlatmarketMethod": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "POST",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "IntegrationResponses": [
+            {
+              "StatusCode": 200
+            },
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": {
+                  "Fn::Join": ["", ["'", { "Ref": "CorsOrigin" }, "'"]]
+                }
+              },
+              "ResponseTemplates": {
+                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\" : \"$errorMessageObj.error\" }"
+              },
+              "SelectionPattern": ".*statusCode.*400.*",
+              "StatusCode": 400
+            },
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": {
+                  "Fn::Join": ["", ["'", { "Ref": "CorsOrigin" }, "'"]]
+                }
+              },
+              "ResponseTemplates": {
+                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\" : \"$errorMessageObj.error\" }"
+              },
+              "SelectionPattern": ".*statusCode.*500.*",
+              "StatusCode": 500
+            },
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": {
+                  "Fn::Join": ["", ["'", { "Ref": "CorsOrigin" }, "'"]]
+                }
+              },
+              "ResponseTemplates": {
+                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\" : \"$errorMessageObj.error\" }"
+              },
+              "SelectionPattern": ".*statusCode.*502.*",
+              "StatusCode": 502
+            },
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": {
+                  "Fn::Join": ["", ["'", { "Ref": "CorsOrigin" }, "'"]]
+                }
+              },
+              "ResponseTemplates": {
+                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\" : \"$errorMessageObj.error\" }"
+              },
+              "SelectionPattern": ".*statusCode.*503.*",
+              "StatusCode": 503
+            }
+          ],
+          "PassthroughBehavior": "NEVER",
+          "RequestTemplates": {
+            "application/json": {
+              "Fn::Join": [
+                "",
+                [
+                  "{",
+                    "\"body\": $input.json('$'),",
+                    "\"env\": {",
+                      "\"schemaUri\": \"", { "Ref": "SchemaUri" }, "\",",
+                      "\"stripeSecretKey\": \"", { "Ref": "StripeSecretKey" }, "\"",
+                    "}",
+                  "}"
+                ]
+              ]
+            }
+          },
+          "Type": "AWS",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:apigateway:",
+                { "Ref": "AWS::Region" },
+                ":lambda:path/2015-03-31/functions/",
+                { "Fn::GetAtt": ["FlatmarketLambdaFunction", "Arn"] },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "StatusCode": 200
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "StatusCode": 400
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "StatusCode": 500
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "StatusCode": 502
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
+            "StatusCode": 503
+          }
+        ],
+        "ResourceId": { "Fn::GetAtt": ["FlatmarketRestApi", "RootResourceId"] },
+        "RestApiId": { "Ref": "FlatmarketRestApi" }
+      }
+    },
+    "FlatmarketRestApi": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "Name": "Flatmarket REST API"
+      }
+    },
+    "FlatmarketRestApiDeployment": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": { "Ref": "FlatmarketRestApi" },
+        "StageName": "flatmarket"
+      },
+      "DependsOn": ["FlatmarketMethod"]
+    }
+  }
+}
