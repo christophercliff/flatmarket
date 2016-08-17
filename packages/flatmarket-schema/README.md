@@ -109,6 +109,7 @@ image | `String` |
 name | `String` |
 panelLabel | `String` |
 publishableKey | `String` | **Required.**
+receiptEmail | `Boolean` |
 shippingAddress | `Boolean` | `billingAddress` must be set to `true`.
 zipCode | `Boolean` |
 

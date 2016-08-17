@@ -163,4 +163,45 @@ describe('flatmarket-schema', function () {
         })
     })
 
+    it('should validate stripe receipt email', function () {
+        Joi.assert({
+            info: {
+                name: 'test',
+            },
+            products: {
+                product_1: {
+                    amount: 1,
+                },
+            },
+            server: {
+                host: 'mysite.com',
+            },
+            stripe: {
+                publishableKey: 'just_a_fake_key',
+                receiptEmail: true,
+            },
+        }, schema)
+    })
+
+    it('should validate product-level stripe receipt email', function () {
+        Joi.assert({
+            info: {
+                name: 'test',
+            },
+            products: {
+                product_1: {
+                    amount: 1,
+                    receiptEmail: true,
+                },
+            },
+            server: {
+                host: 'mysite.com',
+            },
+            stripe: {
+                publishableKey: 'just_a_fake_key',
+                receiptEmail: false,
+            },
+        }, schema)
+    })
+
 })

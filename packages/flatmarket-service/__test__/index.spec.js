@@ -29,6 +29,8 @@ var SCHEMA_URI = url.format({
 var VALID_SCHEMA = require('./fixtures/flatmarket.valid.json')
 var VALID_SHIPPING_SCHEMA = require('./fixtures/flatmarket.shipping.json')
 var INVALID_SCHEMA = require('./fixtures/flatmarket.invalid.json')
+var VALID_RECEIPT_EMAIL_SCHEMA = require('./fixtures/flatmarket.receipt-email.json')
+var VALID_SKU_RECEIPT_EMAIL_SCHEMA = require('./fixtures/flatmarket.sku-receipt-email.json')
 
 describe('handleRequest()', function () {
 
@@ -360,6 +362,66 @@ describe('handleRequest()', function () {
             .then(done)
             .error(function (err) {
                 expect(_.get(err, 'output.statusCode')).to.equal(400)
+                return done()
+            })
+            .caught(done)
+    })
+
+    it('should handle stripe receipt email', function (done) {
+        var stripePayload
+        nock(STRIPE_ORIGIN)
+            .post(STRIPE_CHARGE_PATH)
+            .reply(function (uri, payload) {
+                stripePayload = payload
+                return [
+                    200,
+                    JSON.stringify({}),
+                ]
+            })
+        nock(SCHEMA_ORIGIN)
+            .get(SCHEMA_PATHNAME)
+            .reply(200, VALID_RECEIPT_EMAIL_SCHEMA)
+        handleRequest(CHARGE_OPTIONS)
+            .then(function (res) {
+                expect(res).to.deep.equal({ code: 'ok' })
+                expect(querystring.parse(stripePayload)).to.deep.equal({
+                    amount: '123',
+                    currency: 'usd',
+                    'metadata[email]': 'fake@email.com',
+                    'metadata[sku]': '001',
+                    receipt_email: 'fake@email.com',
+                    source: 'just_a_fake_token',
+                })
+                return done()
+            })
+            .caught(done)
+    })
+
+    it('should handle SKU-level stripe receipt email', function (done) {
+        var stripePayload
+        nock(STRIPE_ORIGIN)
+            .post(STRIPE_CHARGE_PATH)
+            .reply(function (uri, payload) {
+                stripePayload = payload
+                return [
+                    200,
+                    JSON.stringify({}),
+                ]
+            })
+        nock(SCHEMA_ORIGIN)
+            .get(SCHEMA_PATHNAME)
+            .reply(200, VALID_SKU_RECEIPT_EMAIL_SCHEMA)
+        handleRequest(CHARGE_OPTIONS)
+            .then(function (res) {
+                expect(res).to.deep.equal({ code: 'ok' })
+                expect(querystring.parse(stripePayload)).to.deep.equal({
+                    amount: '123',
+                    currency: 'usd',
+                    'metadata[email]': 'fake@email.com',
+                    'metadata[sku]': '001',
+                    receipt_email: 'fake@email.com',
+                    source: 'just_a_fake_token',
+                })
                 return done()
             })
             .caught(done)

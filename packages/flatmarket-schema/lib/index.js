@@ -10,6 +10,7 @@ var stripeBase = Joi.object().keys({
     currency: Joi.string(),
     image: Joi.string(),
     panelLabel: Joi.string(),
+    receiptEmail: Joi.boolean(),
     shippingAddress: Joi.any().when('billingAddress', {
         is: true,
         then: Joi.boolean(),
