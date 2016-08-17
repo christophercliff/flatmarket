@@ -37,7 +37,7 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        library: 'app',
+        library: 'flatmarket',
         libraryTarget: 'var',
     },
     plugins: [

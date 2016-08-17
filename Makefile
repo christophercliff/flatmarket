@@ -32,6 +32,19 @@ example-dev:
 		-S sk_test_uGNBvbIuaVuzL1nGDmLQDqnC \
 		-D
 
+example-preview:
+	./packages/flatmarket-cli/bin/flatmarket ./packages/flatmarket-example/src/flatmarket.json \
+		-s ./packages/flatmarket-example/src/ \
+		-d ./build/ \
+		-S sk_test_uGNBvbIuaVuzL1nGDmLQDqnC \
+		-p
+
+example-prod:
+	./packages/flatmarket-cli/bin/flatmarket ./packages/flatmarket-example/src/flatmarket.json \
+		-s ./packages/flatmarket-example/src/ \
+		-d ./build/ \
+		-S sk_test_uGNBvbIuaVuzL1nGDmLQDqnC
+
 reset:
 	./node_modules/.bin/lerna clean --yes
 	./node_modules/.bin/lerna bootstrap --yes

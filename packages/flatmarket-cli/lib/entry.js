@@ -6,10 +6,8 @@ var React = require('react')
 var ReactDom = require('react-dom')
 var store = require('flatmarket-ui').store
 
-exports.init = init
-
-function init(data, el) {
+module.exports = function (data, htmlElement) {
     store.dispatch(actions.reset(data))
     var provider = React.createElement(Provider, { store: store }, React.createElement(connect(Component)))
-    return ReactDom.render(provider, el)
+    return ReactDom.render(provider, htmlElement)
 }

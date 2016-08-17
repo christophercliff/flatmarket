@@ -38,7 +38,7 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        library: 'app',
+        library: 'flatmarket',
         libraryTarget: 'var',
     },
     plugins: [
@@ -51,5 +51,11 @@ module.exports = {
         new ExtractTextPlugin('[name].css', {
             allChunks: true,
         }),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            comments: /^remove all comments$/,
+            mangle: true,
+        }),
+        new webpack.optimize.OccurenceOrderPlugin(true),
     ],
 }
