@@ -55,18 +55,6 @@ describe('flatmarket-cli', function () {
                 },
             }
         })
-        mockRequire('webpack', function () {
-            return {
-                run: function (callback) {
-                    return callback(undefined, {
-                        hasErrors: _.noop,
-                        toJson: function () {
-                            return {}
-                        },
-                    })
-                },
-            }
-        })
         mockRequire('flatmarket-server', {
             startServer: function () { return Bluebird.resolve() },
         })

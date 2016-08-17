@@ -38,8 +38,8 @@ var STATIC_SERVER_ORIGIN = url.format({
 })
 var FLATMARKET_SERVER_PORT = 8001
 var WEBPACK_SERVER_PORT = 8002
-var CSS_PATHNAME = '/app.css'
-var JS_PATHNAME = '/app.js'
+var CSS_PATHNAME = 'app.css'
+var JS_PATHNAME = 'app.js'
 var JS_URI = url.format({
     hostname: HOSTNAME,
     pathname: JS_PATHNAME,
@@ -119,6 +119,12 @@ function buildLayout(options) {
     var markup
     if (options.dev) {
         jsPath = JS_URI
+    } else {
+        cssPath = CSS_PATHNAME
+        jsPath = JS_PATHNAME
+        markup = getMarkup(options, data)
+    }
+    if (options.dev || options.preview) {
         _.merge(data, {
             server: {
                 host: [
@@ -127,10 +133,6 @@ function buildLayout(options) {
                 ].join(':'),
             },
         })
-    } else {
-        cssPath = CSS_PATHNAME
-        jsPath = JS_PATHNAME
-        markup = getMarkup(options, data)
     }
     var template = _.template(fs.readFileSync(LAYOUT_PATH, 'utf8'))
     var html = template({
