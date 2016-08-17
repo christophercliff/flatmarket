@@ -95,7 +95,7 @@ Then upload the files to your preferred web server.
 
 Platform | Click to deploy | &nbsp;
 ---|---|---
-AWS | [![Deploy to AWS](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=region#/stacks/new?stackName=Flatmarket&templateURL=https://raw.githubusercontent.com/christophercliff/flatmarket/master/packages/flatmarket-aws/template.json) | [more info](packages/flatmarket-aws)
+AWS | [![Deploy to AWS](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=flatmarket&templateURL=https://s3.amazonaws.com/flatmarket/template.json) | [more info](packages/flatmarket-aws)
 Heroku | [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/christophercliff/flatmarket-server-heroku) | [more info](https://github.com/christophercliff/flatmarket-server-heroku) (deprecated)
 
 #### Manual deployments

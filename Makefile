@@ -24,6 +24,8 @@ aws-lambda:
 aws-upload:
 	aws s3 cp ./packages/flatmarket-aws/lambda.zip s3://flatmarket/lambda.zip \
 		--acl public-read
+	aws s3 cp ./packages/flatmarket-aws/template.json s3://flatmarket/template.json \
+		--acl public-read
 
 example-dev:
 	./packages/flatmarket-cli/bin/flatmarket ./packages/flatmarket-example/src/flatmarket.json \
