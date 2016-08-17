@@ -7,6 +7,8 @@ dependencies:
     - make reset
 test:
   override:
+    - make style-aws:
+        parallel: true
     - make style-cli:
         parallel: true
     - make style-client:
@@ -24,6 +26,8 @@ test:
     - make style-ui:
         parallel: true
     - make style-validation:
+        parallel: true
+    - make coverage-aws:
         parallel: true
     - make coverage-cli:
         parallel: true
