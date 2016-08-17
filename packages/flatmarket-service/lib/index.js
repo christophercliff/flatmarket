@@ -60,12 +60,21 @@ module.exports = function (stripeSecretKey, schemaUri) {
                     stripeResource = stripe.customers
                 } else {
                     stripePayload = _.chain(sku)
-                        .pick('amount', 'currency')
+                        .pick('amount', 'currency', 'receiptEmail')
                         .extend(stripePayload)
                         .defaults({
                             currency: schema.stripe.currency,
+                            receiptEmail: schema.stripe.receiptEmail,
                         })
                         .value()
+                    if (stripePayload.receiptEmail) {
+                        stripePayload = _.chain(stripePayload)
+                            .extend({
+                                receipt_email: payload.email,
+                            })
+                            .omit('receiptEmail')
+                            .value()
+                    }
                     stripeResource = stripe.charges
                 }
                 return new Bluebird(function (resolve, reject) {
