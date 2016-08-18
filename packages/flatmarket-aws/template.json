@@ -109,7 +109,7 @@
                 }
               },
               "ResponseTemplates": {
-                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\" : \"$errorMessageObj.error\" }"
+                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\": \"$errorMessageObj.error\", \"message\": \"$errorMessageObj.message\" }"
               },
               "SelectionPattern": ".*statusCode.*400.*",
               "StatusCode": 400
@@ -121,7 +121,7 @@
                 }
               },
               "ResponseTemplates": {
-                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\" : \"$errorMessageObj.error\" }"
+                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\": \"$errorMessageObj.error\", \"message\": \"$errorMessageObj.message\" }"
               },
               "SelectionPattern": ".*statusCode.*415.*",
               "StatusCode": 415
@@ -133,19 +133,7 @@
                 }
               },
               "ResponseTemplates": {
-                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\" : \"$errorMessageObj.error\" }"
-              },
-              "SelectionPattern": ".*statusCode.*500.*",
-              "StatusCode": 500
-            },
-            {
-              "ResponseParameters": {
-                "method.response.header.Access-Control-Allow-Origin": {
-                  "Fn::Join": ["", ["'", { "Ref": "CorsOrigin" }, "'"]]
-                }
-              },
-              "ResponseTemplates": {
-                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\" : \"$errorMessageObj.error\" }"
+                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\": \"$errorMessageObj.error\", \"message\": \"$errorMessageObj.message\" }"
               },
               "SelectionPattern": ".*statusCode.*502.*",
               "StatusCode": 502
@@ -157,10 +145,22 @@
                 }
               },
               "ResponseTemplates": {
-                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\" : \"$errorMessageObj.error\" }"
+                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\": \"$errorMessageObj.error\", \"message\": \"$errorMessageObj.message\" }"
               },
               "SelectionPattern": ".*statusCode.*503.*",
               "StatusCode": 503
+            },
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": {
+                  "Fn::Join": ["", ["'", { "Ref": "CorsOrigin" }, "'"]]
+                }
+              },
+              "ResponseTemplates": {
+                "application/json": "{ \"error\": \"Internal Server Error\", \"message\": \"Terrible implementation.\" }"
+              },
+              "SelectionPattern": "(\\n|.)+",
+              "StatusCode": 500
             }
           ],
           "PassthroughBehavior": "NEVER",
