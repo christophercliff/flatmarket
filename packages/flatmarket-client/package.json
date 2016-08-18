@@ -1,7 +1,7 @@
 {
   "name": "flatmarket-client",
   "description": "A browser client for Flatmarket.",
-  "version": "3.0.0-beta.1",
+  "version": "3.0.0-beta.2",
   "engines": {
     "node": "4.x",
     "npm": "2.x"
@@ -12,7 +12,7 @@
   "dependencies": {
     "bluebird": "^2.9.30",
     "boom": "^2.8.0",
-    "flatmarket-validation": "^3.0.0-beta.1",
+    "flatmarket-validation": "^3.0.0-beta.2",
     "joi": "^6.6.0",
     "lodash": "^3.10.0",
     "reqwest": "^2.0.1",
