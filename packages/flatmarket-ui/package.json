@@ -1,7 +1,7 @@
 {
   "name": "flatmarket-ui",
   "description": "The Redux implementation for Flatmarket.",
-  "version": "2.1.2",
+  "version": "3.0.0-beta.1",
   "engines": {
     "node": "4.x",
     "npm": "2.x"
@@ -12,8 +12,8 @@
   "dependencies": {
     "bluebird": "^2.10.2",
     "crispy-redux": "^1.0.0",
-    "flatmarket-client": "^1.1.0",
-    "flatmarket-schema": "^1.1.2",
+    "flatmarket-client": "^3.0.0-beta.1",
+    "flatmarket-schema": "^3.0.0-beta.1",
     "immutable": "^3.7.5",
     "lodash": "^3.10.1",
     "react": "^0.14.2",

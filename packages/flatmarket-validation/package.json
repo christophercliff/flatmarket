@@ -1,7 +1,7 @@
 {
   "name": "flatmarket-validation",
   "description": "Validations for Flatmarket.",
-  "version": "2.1.2",
+  "version": "3.0.0-beta.1",
   "engines": {
     "node": "4.x",
     "npm": "2.x"
