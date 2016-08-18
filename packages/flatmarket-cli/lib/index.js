@@ -82,7 +82,6 @@ module.exports = function (options) {
             .then(buildApp.bind(undefined, options))
             .then(function () {
                 return Bluebird.all([
-                    startFlatmarketServer(flatmarketServerConfig),
                     startStaticServer(options),
                 ])
             })
