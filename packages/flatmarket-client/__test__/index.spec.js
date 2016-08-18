@@ -2,7 +2,6 @@
 var Bluebird = require('bluebird')
 var Client = require('../lib/index')
 var expect = require('chai').expect
-var querystring = require('querystring')
 
 var HOST = 'just-a-test-host.com'
 var RESPONSE_HEADERS = {
@@ -52,8 +51,8 @@ describe('Client', function () {
             fakeServer.respondWith(function (fakeXHR) {
                 expect(fakeXHR.method).to.equal('POST')
                 expect(fakeXHR.url).to.equal('https://just-a-test-host.com/')
-                expect(fakeXHR.requestHeaders['Content-Type']).to.equal('application/x-www-form-urlencoded;charset=utf-8')
-                expect(querystring.parse(fakeXHR.requestBody)).to.deep.equal({
+                expect(fakeXHR.requestHeaders['Content-Type']).to.equal('application/json;charset=utf-8')
+                expect(JSON.parse(fakeXHR.requestBody)).to.deep.equal({
                     email: 'test@email.com',
                     sku: '001',
                     token: 'just_a_fake_token',
@@ -75,10 +74,12 @@ describe('Client', function () {
             fakeServer.respondWith(function (fakeXHR) {
                 expect(fakeXHR.method).to.equal('POST')
                 expect(fakeXHR.url).to.equal('https://just-a-test-host.com/')
-                expect(fakeXHR.requestHeaders['Content-Type']).to.equal('application/x-www-form-urlencoded;charset=utf-8')
-                expect(querystring.parse(fakeXHR.requestBody)).to.deep.equal({
+                expect(fakeXHR.requestHeaders['Content-Type']).to.equal('application/json;charset=utf-8')
+                expect(JSON.parse(fakeXHR.requestBody)).to.deep.equal({
                     email: 'test@email.com',
-                    'metadata[hello]': 'world',
+                    metadata: {
+                        hello: 'world',
+                    },
                     sku: '001',
                     token: 'just_a_fake_token',
                 })
@@ -102,15 +103,19 @@ describe('Client', function () {
             fakeServer.respondWith(function (fakeXHR) {
                 expect(fakeXHR.method).to.equal('POST')
                 expect(fakeXHR.url).to.equal('https://just-a-test-host.com/')
-                expect(fakeXHR.requestHeaders['Content-Type']).to.equal('application/x-www-form-urlencoded;charset=utf-8')
-                expect(querystring.parse(fakeXHR.requestBody)).to.deep.equal({
+                expect(fakeXHR.requestHeaders['Content-Type']).to.equal('application/json;charset=utf-8')
+                expect(JSON.parse(fakeXHR.requestBody)).to.deep.equal({
                     email: 'test@email.com',
-                    'shipping[address][city]': 'Racine',
-                    'shipping[address][country]': 'United States',
-                    'shipping[address][line1]': '123 Fake St',
-                    'shipping[address][state]': 'NY',
-                    'shipping[address][postal_code]': '10000',
-                    'shipping[name]': 'John Doe',
+                    shipping: {
+                        address: {
+                            city: 'Racine',
+                            country: 'United States',
+                            line1: '123 Fake St',
+                            state: 'NY',
+                            postal_code: '10000',
+                        },
+                        name: 'John Doe',
+                    },
                     sku: '001',
                     token: 'just_a_fake_token',
                 })

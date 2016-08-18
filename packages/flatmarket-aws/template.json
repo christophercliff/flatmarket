@@ -95,6 +95,11 @@
           "IntegrationHttpMethod": "POST",
           "IntegrationResponses": [
             {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": {
+                  "Fn::Join": ["", ["'", { "Ref": "CorsOrigin" }, "'"]]
+                }
+              },
               "StatusCode": 200
             },
             {
@@ -108,6 +113,18 @@
               },
               "SelectionPattern": ".*statusCode.*400.*",
               "StatusCode": 400
+            },
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": {
+                  "Fn::Join": ["", ["'", { "Ref": "CorsOrigin" }, "'"]]
+                }
+              },
+              "ResponseTemplates": {
+                "application/json": "#set ($errorMessageObj = $util.parseJson($input.path('$.errorMessage'))) { \"error\" : \"$errorMessageObj.error\" }"
+              },
+              "SelectionPattern": ".*statusCode.*415.*",
+              "StatusCode": 415
             },
             {
               "ResponseParameters": {
@@ -194,6 +211,12 @@
             "ResponseParameters": {
               "method.response.header.Access-Control-Allow-Origin": true
             },
+            "StatusCode": 415
+          },
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true
+            },
             "StatusCode": 500
           },
           {
@@ -213,6 +236,47 @@
         "RestApiId": { "Ref": "FlatmarketRestApi" }
       }
     },
+    "FlatmarketMethodPreflight": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+                "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS'",
+                "method.response.header.Access-Control-Allow-Origin": {
+                  "Fn::Join": ["", ["'", { "Ref": "CorsOrigin" }, "'"]]
+                }
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              },
+              "StatusCode": 200
+            }
+          ],
+          "PassthroughBehavior": "WHEN_NO_MATCH",
+          "RequestTemplates": {
+            "application/json": "{ \"statusCode\": 200 }"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": false,
+              "method.response.header.Access-Control-Allow-Methods": false,
+              "method.response.header.Access-Control-Allow-Headers": false
+            },
+            "StatusCode": 200
+          }
+        ],
+        "ResourceId": { "Fn::GetAtt": ["FlatmarketRestApi", "RootResourceId"] },
+        "RestApiId": { "Ref": "FlatmarketRestApi" }
+      }
+    },
     "FlatmarketRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
@@ -225,7 +289,10 @@
         "RestApiId": { "Ref": "FlatmarketRestApi" },
         "StageName": "flatmarket"
       },
-      "DependsOn": ["FlatmarketMethod"]
+      "DependsOn": [
+        "FlatmarketMethod",
+        "FlatmarketMethodPreflight"
+      ]
     }
   }
 }

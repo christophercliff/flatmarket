@@ -29,7 +29,7 @@ describe('hapi-flatmarket', function () {
     var server
 
     beforeEach(function () {
-        server = new Hapi.Server()
+        server = new Hapi.Server({ debug: false })
         server.connection({
             host: HOSTNAME,
             port: PORT,
@@ -85,12 +85,44 @@ describe('hapi-flatmarket', function () {
                     stripeSecretKey: STRIPE_SECRET_KEY,
                 },
             }, function (registerErr) {
-                if (registerErr) throw registerErr
+                if (registerErr) return done(registerErr)
                 server.start(function (startErr) {
                     if (startErr) return done(startErr)
-                    request().spread(function (res, payload) {
+                    doPost().spread(function (res, payload) {
                         expect(res.statusCode).to.equal(200)
                         expect(payload).to.deep.equal({ foo: 'foo' })
+                        return done()
+                    })
+                })
+            })
+        })
+
+        it('should invoke preflight handler', function (done) {
+            server.register({
+                register: Plugin,
+                options: {
+                    corsOrigins: ['https://foo.com'],
+                    schemaUri: SCHEMA_URI,
+                    stripeSecretKey: STRIPE_SECRET_KEY,
+                },
+            }, function (registerErr) {
+                if (registerErr) return done(registerErr)
+                server.start(function (startErr) {
+                    if (startErr) return done(startErr)
+                    return new Bluebird(function (resolve, reject) {
+                        Wreck.request('OPTIONS', URI, {}, function (err, res, payload) {
+                            if (err) return reject(err)
+                            return resolve([
+                                res,
+                                payload,
+                            ])
+                        })
+                    })
+                    .spread(function (res) {
+                        expect(_.get(res, [
+                            'headers',
+                            'access-control-allow-origin',
+                        ])).to.equal('https://foo.com')
                         return done()
                     })
                 })
@@ -111,10 +143,10 @@ describe('hapi-flatmarket', function () {
                     stripeSecretKey: STRIPE_SECRET_KEY,
                 },
             }, function (registerErr) {
-                if (registerErr) throw registerErr
+                if (registerErr) return done(registerErr)
                 server.start(function (startErr) {
                     if (startErr) return done(startErr)
-                    request().spread(function (res) {
+                    doPost().spread(function (res) {
                         expect(res.statusCode).to.equal(400)
                         return done()
                     })
@@ -136,10 +168,10 @@ describe('hapi-flatmarket', function () {
                     stripeSecretKey: STRIPE_SECRET_KEY,
                 },
             }, function (registerErr) {
-                if (registerErr) throw registerErr
+                if (registerErr) return done(registerErr)
                 server.start(function (startErr) {
                     if (startErr) return done(startErr)
-                    request().spread(function (res) {
+                    doPost().spread(function (res) {
                         expect(res.statusCode).to.equal(500)
                         return done()
                     })
@@ -151,7 +183,7 @@ describe('hapi-flatmarket', function () {
 
 })
 
-function request() {
+function doPost() {
     return post(URI, {
         payload: JSON.stringify({
             email: 'fake@email.com',

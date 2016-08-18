@@ -25,12 +25,13 @@ function register(server, options, next) {
     if (validation.error) return next(validation.error)
     options = validation.value
     var handler = createHandler(options.stripeSecretKey, options.schemaUri)
+    var cors = {
+        origin: options.corsOrigins,
+    }
     server.route({
         config: {
-            cors: {
-                origin: options.corsOrigins,
-            },
-            id: 'flatmarket-charge',
+            cors: cors,
+            id: 'flatmarket',
             validate: {
                 payload: flatmarketValidation.createCharge,
             },
@@ -44,6 +45,17 @@ function register(server, options, next) {
                     if (err.isBoom) return reply(err)
                     return reply(Boom.badImplementation())
                 })
+        },
+    })
+    server.route({
+        config: {
+            cors: cors,
+            id: 'flatmarket-preflight',
+        },
+        method: 'OPTIONS',
+        path: PATH,
+        handler: function (req, reply) {
+            return reply()
         },
     })
     return next()

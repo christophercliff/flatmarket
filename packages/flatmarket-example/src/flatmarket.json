@@ -54,7 +54,8 @@
     }
   },
   "server": {
-    "host": "flatmarket.herokuapp.com"
+    "host": "qlpagj7vtk.execute-api.us-east-1.amazonaws.com",
+    "pathname": "/flatmarket/"
   },
   "stripe": {
     "allowRememberMe": false,
