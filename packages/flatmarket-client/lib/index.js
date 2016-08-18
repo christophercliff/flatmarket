@@ -10,8 +10,6 @@ var OPTIONS_SCHEMA = Joi.object().keys({
     host: Joi.string().required(),
     pathname: Joi.string().default('/'),
 }).required()
-var PROTOCOL = 'https'
-var POST = 'post'
 
 module.exports = Client
 
@@ -20,7 +18,7 @@ function Client(options) {
     if (validation.error) throw validation.error
     this.uri = url.format({
         host: validation.value.host,
-        protocol: PROTOCOL,
+        protocol: 'https',
         pathname: validation.value.pathname,
     })
 }
@@ -38,19 +36,17 @@ _.extend(Client.prototype, {
     createCharge: function (data) {
         var validation = flatmarketValidation.createCharge.validate(data)
         if (validation.error) return Bluebird.reject(new Bluebird.OperationalError(validation.error))
-        return request({
-            data: data,
-            method: POST,
-            url: this.uri,
-        })
+        return request(this.uri, data)
     },
 
 })
 
-function request(options) {
+function request(uri, data) {
     return new Bluebird(function (resolve, reject) {
-        reqwest(_.extend(options, {
+        reqwest({
+            contentType: 'application/json',
             crossOrigin: true,
+            data: JSON.stringify(data),
             error: function (xhr) {
                 try {
                     return reject(new Bluebird.OperationalError(Boom.create(xhr.status, JSON.parse(xhr.response).error)))
@@ -58,7 +54,10 @@ function request(options) {
                     return reject(new Bluebird.OperationalError(Boom.create(400, 'An error occurred')))
                 }
             },
+            method: 'post',
             success: resolve,
-        }))
+            type: 'json',
+            url: uri,
+        })
     })
 }

@@ -8,7 +8,6 @@ var path = require('path')
 var schema = require('flatmarket-schema')
 var startFlatmarketServer = require('flatmarket-server').startServer
 var url = require('url')
-var util = require('util')
 var Watchpack = require('watchpack')
 var WebpackDevServer = require('webpack-dev-server')
 var webpack = require('webpack')
@@ -31,11 +30,6 @@ var OPTIONS_SCHEMA = Joi.object().keys({
 var PROTOCOL = 'https'
 var HOSTNAME = '127.0.0.1'
 var STATIC_SERVER_PORT = 8000
-var STATIC_SERVER_ORIGIN = url.format({
-    hostname: HOSTNAME,
-    port: STATIC_SERVER_PORT,
-    protocol: PROTOCOL,
-})
 var FLATMARKET_SERVER_PORT = 8001
 var WEBPACK_SERVER_PORT = 8002
 var CSS_PATHNAME = 'app.css'
@@ -47,7 +41,6 @@ var JS_URI = url.format({
     protocol: PROTOCOL,
 })
 var LAYOUT_PATH = path.resolve(__dirname, '../templates/layout.html')
-var SERVER_MESSAGE_TEMPLATE = 'Server listening at %s'
 
 module.exports = function (options) {
     var validation = Joi.validate(options, OPTIONS_SCHEMA)
@@ -119,20 +112,19 @@ function buildLayout(options) {
     var markup
     if (options.dev) {
         jsPath = JS_URI
-    } else {
-        cssPath = CSS_PATHNAME
-        jsPath = JS_PATHNAME
-        markup = getMarkup(options, data)
-    }
-    if (options.dev || options.preview) {
         _.merge(data, {
             server: {
                 host: [
                     HOSTNAME,
                     FLATMARKET_SERVER_PORT,
                 ].join(':'),
+                pathname: '/',
             },
         })
+    } else {
+        cssPath = CSS_PATHNAME
+        jsPath = JS_PATHNAME
+        markup = getMarkup(options, data)
     }
     var template = _.template(fs.readFileSync(LAYOUT_PATH, 'utf8'))
     var html = template({
@@ -212,7 +204,6 @@ function startStaticServer(options) {
     return new Bluebird(function (resolve, reject) {
         server.start(function (err) {
             if (err) return reject(err)
-            console.log(util.format(SERVER_MESSAGE_TEMPLATE, STATIC_SERVER_ORIGIN))
             return resolve()
         })
     })

@@ -10,13 +10,13 @@
 
 Flatmarket is a free, open source e-commerce platform for static websites. It offers the performance, reliability, and simplicity of a static website combined with secure and scalable payment processing.
 
-The platform uses [Stripe](https://stripe.com/) for payment processing and it's built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/). It comes with [one-click installers](#automated-deployments) for [AWS](https://aws.amazon.com/lambda/) and [Heroku](https://www.heroku.com/).
+The platform uses [Stripe](https://stripe.com/) for payment processing and it's built on the latest web technologies like [hapi](http://hapijs.com/), [React](http://facebook.github.io/react/), and [Webpack](http://webpack.github.io/). The backend can be [deployed automatically](#automated-deployments) to [AWS Lambda](https://aws.amazon.com/lambda/).
 
-At its core is a batteries-included CLI to help you [get started quickly](#documentation) Modules are also [packaged individually](packages) so you can customize your rig.
+At its core is a batteries-included CLI to help you [get started quickly](#documentation). Modules are also [packaged individually](packages) so you can customize your rig.
 
 ## Features
 
-- Automated deployment for AWS or Heroku
+- Automated deployment to AWS Lambda
 - Customizable React UI (or use whatever frontend you prefer)
 - Separate billing and shipping addresses
 - Subscription billing
@@ -93,10 +93,9 @@ Then upload the files to your preferred web server.
 
 #### Automated deployments
 
-Platform | Click to deploy | &nbsp;
+Platform | Deploy | &nbsp;
 ---|---|---
-AWS | [![Deploy to AWS](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=flatmarket&templateURL=https://s3.amazonaws.com/flatmarket/template.json) | [more info](packages/flatmarket-aws)
-Heroku | [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/christophercliff/flatmarket-server-heroku) | [more info](https://github.com/christophercliff/flatmarket-server-heroku) (deprecated)
+AWS | [![Deploy to AWS](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=flatmarket&templateURL=https://s3.amazonaws.com/flatmarket/template.json) | [Docs](packages/flatmarket-aws)
 
 #### Manual deployments
 

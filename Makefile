@@ -31,21 +31,21 @@ example-dev:
 	./packages/flatmarket-cli/bin/flatmarket ./packages/flatmarket-example/src/flatmarket.json \
 		-s ./packages/flatmarket-example/src/ \
 		-d ./build/ \
-		-S sk_test_uGNBvbIuaVuzL1nGDmLQDqnC \
+		-S {YOUR_TEST_SECRET_KEY} \
 		-D
 
 example-preview:
 	./packages/flatmarket-cli/bin/flatmarket ./packages/flatmarket-example/src/flatmarket.json \
 		-s ./packages/flatmarket-example/src/ \
 		-d ./build/ \
-		-S sk_test_uGNBvbIuaVuzL1nGDmLQDqnC \
+		-S {YOUR_TEST_SECRET_KEY} \
 		-p
 
 example-prod:
 	./packages/flatmarket-cli/bin/flatmarket ./packages/flatmarket-example/src/flatmarket.json \
 		-s ./packages/flatmarket-example/src/ \
 		-d ./build/ \
-		-S sk_test_uGNBvbIuaVuzL1nGDmLQDqnC
+		-S {YOUR_TEST_SECRET_KEY}
 
 reset:
 	./node_modules/.bin/lerna clean --yes

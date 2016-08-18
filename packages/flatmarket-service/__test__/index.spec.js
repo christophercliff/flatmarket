@@ -5,7 +5,7 @@ var createHandler = require('../')
 var querystring = require('querystring')
 var url = require('url')
 
-var STRIPE_SECRET_KEY = 'sk_test_uGNBvbIuaVuzL1nGDmLQDqnC'
+var STRIPE_SECRET_KEY = 'sk_test_foo'
 var STRIPE_ORIGIN = 'https://api.stripe.com'
 var STRIPE_CHARGE_PATH = '/v1/charges'
 var STRIPE_CUSTOMER_PATH = '/v1/customers'
@@ -32,7 +32,7 @@ var INVALID_SCHEMA = require('./fixtures/flatmarket.invalid.json')
 var VALID_RECEIPT_EMAIL_SCHEMA = require('./fixtures/flatmarket.receipt-email.json')
 var VALID_SKU_RECEIPT_EMAIL_SCHEMA = require('./fixtures/flatmarket.sku-receipt-email.json')
 
-describe('handleRequest()', function () {
+describe('flatmarket-service', function () {
 
     var handleRequest
 
