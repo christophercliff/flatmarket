@@ -1,3 +1,17 @@
+# export $(cat .env | xargs)
+
+# publish:
+# 	./node_modules/.bin/lerna publish \
+# 		--force-publish=* \
+# 		--skip-npm \
+# 		--repo-version 3.0.0-beta.3
+# 	rm -rf ./packages/flatmarket-aws/node_modules/
+# 	cd ./packages/flatmarket-aws/; \
+# 		rm -rf ./node_modules/ \
+# 		npm install
+# 	make aws-lambda
+# 	make aws-upload
+
 aws-stack:
 	aws cloudformation validate-template \
 	    --template-body file://packages//flatmarket-aws//template.json
@@ -38,14 +52,12 @@ example-preview:
 	./packages/flatmarket-cli/bin/flatmarket ./packages/flatmarket-example/src/flatmarket.json \
 		-s ./packages/flatmarket-example/src/ \
 		-d ./build/ \
-		-S {YOUR_TEST_SECRET_KEY} \
 		-p
 
 example-prod:
 	./packages/flatmarket-cli/bin/flatmarket ./packages/flatmarket-example/src/flatmarket.json \
 		-s ./packages/flatmarket-example/src/ \
-		-d ./build/ \
-		-S {YOUR_TEST_SECRET_KEY}
+		-d ./build/
 
 reset:
 	./node_modules/.bin/lerna clean --yes
