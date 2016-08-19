@@ -1,16 +1,13 @@
-# export $(cat .env | xargs)
-
-# publish:
-# 	./node_modules/.bin/lerna publish \
-# 		--force-publish=* \
-# 		--skip-npm \
-# 		--repo-version 3.0.0-beta.3
-# 	rm -rf ./packages/flatmarket-aws/node_modules/
-# 	cd ./packages/flatmarket-aws/; \
-# 		rm -rf ./node_modules/ \
-# 		npm install
-# 	make aws-lambda
-# 	make aws-upload
+publish:
+	./node_modules/.bin/lerna publish \
+		--force-publish=* \
+		--skip-npm \
+		--repo-version 3.0.0-beta.3
+	cd ./packages/flatmarket-aws/; \
+		rm -rf ./node_modules/ \
+		npm install
+	make aws-lambda
+	make aws-upload
 
 aws-stack:
 	aws cloudformation validate-template \
