@@ -1,7 +1,7 @@
 {
   "name": "flatmarket-theme-bananas",
   "description": "The default Flatmarket theme.",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "main": "index.jsx",
   "engines": {
     "node": "4.x",
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": "https://github.com/christophercliff/flatmarket/tree/master/packages/flatmarket-theme-bananas",
   "dependencies": {
-    "flatmarket-ui": "^3.0.0",
+    "flatmarket-ui": "^3.0.1",
     "lodash": "^3.10.0",
     "react": "^0.14.2"
   }

@@ -1,7 +1,7 @@
 {
   "name": "flatmarket-aws",
   "description": "A Flatmarket service for AWS.",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "engines": {
     "node": "4.x",
     "npm": "2.x"
@@ -11,7 +11,7 @@
   "main": "./lib/",
   "dependencies": {
     "boom": "^2.8.0",
-    "flatmarket-service": "^3.0.0",
+    "flatmarket-service": "^3.0.1",
     "joi": "^6.5.0"
   }
 }
