@@ -54,7 +54,7 @@
     }
   },
   "server": {
-    "host": "qlpagj7vtk.execute-api.us-east-1.amazonaws.com",
+    "host": "6qq8e2dyh9.execute-api.us-east-1.amazonaws.com",
     "pathname": "/flatmarket/"
   },
   "stripe": {

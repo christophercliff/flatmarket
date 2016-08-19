@@ -51,8 +51,8 @@ Flatmarket is a static website generator paired with a proxy server for sending 
 - [Installation](#installation)
 - [Creating the schema](#creating-the-schema)
 - [Developing locally](#developing-locally)
-- [Building & deploying the static website](#building-deploying-the-static-website)
 - [Deploying the proxy server](#deploying-the-proxy-server)
+- [Building & deploying the static website](#building-deploying-the-static-website)
 - [Using themes](#using-themes)
 
 ### Installation
@@ -79,16 +79,6 @@ The Flatmarket CLI comes with a local development server so you can preview your
 
 An [example project](packages/flatmarket-example) is included to help you get started.
 
-### Building & deploying the static website
-
-When you're finished with development, generate a production-ready build of the static website.
-
-```sh
-./node_modules/.bin/flatmarket ./src/flatmarket.json
-```
-
-Then upload the files to your preferred web server.
-
 ### Deploying the proxy server
 
 #### Automated deployments
@@ -102,6 +92,16 @@ AWS | [![Deploy to AWS](https://s3.amazonaws.com/cloudformation-examples/cloudfo
 - [service](packages/flatmarket-service)
 - [server](packages/flatmarket-server)
 - [hapi](packages/flatmarket-hapi)
+
+### Building & deploying the static website
+
+When you're finished with development, generate a production-ready build of the static website.
+
+```sh
+./node_modules/.bin/flatmarket ./src/flatmarket.json
+```
+
+Then upload the files to your preferred web server.
 
 ### Using themes
 
