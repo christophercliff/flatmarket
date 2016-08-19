@@ -1,7 +1,7 @@
 {
   "name": "flatmarket-service",
   "description": "The core Flatmarket service.",
-  "version": "3.0.0-beta.3",
+  "version": "3.0.0",
   "engines": {
     "node": "4.x",
     "npm": "2.x"
@@ -12,7 +12,7 @@
   "dependencies": {
     "bluebird": "^2.9.30",
     "boom": "^2.8.0",
-    "flatmarket-schema": "3.0.0-beta.3",
+    "flatmarket-schema": "^3.0.0",
     "joi": "^6.5.0",
     "lodash": "^3.10.0",
     "stripe": "^3.6.0",
