@@ -46,6 +46,22 @@ Flatmarket is a static website generator paired with a proxy server for sending 
 4. The Flatmarket service reads the product price from the schema document on the static web server.
 5. The Flatmarket service submits the charge to Stripe.
 
+## Cost to Operate
+
+This data is for the Flatmarket demo for the month of September, 2016.
+
+| Sales ||
+|:---|---:|
+| Gross volume | $2,586 |
+| Successful charges | 213 |
+
+| Operating costs ||
+|:---|---:|
+Static website (GitHub Pages) | $0.00
+Flatmarket service (AWS) | $0.82
+DNS/SSL (CloudFlare) | $0.00
+**Total** | **$0.82**
+
 ## Documentation
 
 - [Installation](#installation)
