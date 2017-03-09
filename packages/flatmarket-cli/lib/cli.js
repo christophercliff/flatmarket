@@ -56,6 +56,7 @@ function normalizeArgs(_schema, options) {
             'source',
             'stripeSecretKey',
             'template',
+            'output',
         ])
         .extend({
             schema: _schema,
