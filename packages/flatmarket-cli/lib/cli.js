@@ -15,6 +15,8 @@ commander
     .option('-p, --preview', 'run in preview mode')
     .option('-s, --source [dir]', 'the source directory')
     .option('-S, --stripe-secret-key [key]', 'the Stripe secret key passed to the local server')
+    .option('-t, --template [file]', 'file to base site on')
+    .option('-o, --output [file]', 'resulting output file name')
 
 commander
     .version(pkg.version)
@@ -43,6 +45,7 @@ function normalizeArgs(_schema, options) {
         'destination',
         'schema',
         'source',
+        'template',
     ]
     return _.chain(options)
         .pick([
@@ -52,6 +55,8 @@ function normalizeArgs(_schema, options) {
             'preview',
             'source',
             'stripeSecretKey',
+            'template',
+            'output',
         ])
         .extend({
             schema: _schema,
