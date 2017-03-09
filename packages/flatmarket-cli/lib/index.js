@@ -26,6 +26,8 @@ var OPTIONS_SCHEMA = Joi.object().keys({
     schema: Joi.string().default(path.resolve(process.cwd(), './src/flatmarket.json')),
     source: Joi.string().default(path.resolve(process.cwd(), './src/')),
     stripeSecretKey: Joi.string().token(),
+    template: Joi.string().default(path.resolve(__dirname, '../templates/layout.html')),
+    output: Joi.string().default('./index.html')
 }).required()
 var PROTOCOL = 'https'
 var HOSTNAME = '127.0.0.1'
@@ -40,7 +42,6 @@ var JS_URI = url.format({
     port: WEBPACK_SERVER_PORT,
     protocol: PROTOCOL,
 })
-var LAYOUT_PATH = path.resolve(__dirname, '../templates/layout.html')
 
 module.exports = function (options) {
     var validation = Joi.validate(options, OPTIONS_SCHEMA)
@@ -125,7 +126,7 @@ function buildLayout(options) {
         jsPath = JS_PATHNAME
         markup = getMarkup(options, data)
     }
-    var template = _.template(fs.readFileSync(LAYOUT_PATH, 'utf8'))
+    var template = _.template(fs.readFileSync(options.template, 'utf8'))
     var html = template({
         cssPath: cssPath,
         data: JSON.stringify(data),
@@ -136,7 +137,7 @@ function buildLayout(options) {
     fs.ensureDirSync(options.destination)
     fs.emptyDirSync(options.destination)
     fs.copySync(options.source, options.destination)
-    fs.writeFileSync(path.resolve(options.destination, './index.html'), html)
+    fs.writeFileSync(path.resolve(options.destination, options.output), html)
     return Bluebird.resolve()
 }
 
